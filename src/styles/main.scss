@@ -1,0 +1,98 @@
+@font-face {
+    font-family: 'Mali', cursive;
+    src: url('./Mali-Regular.ttf')
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    .root {
+        background-image: url('../img/99.jpg')
+    }
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Mali', cursive;
+    justify-content: space-around;
+
+    .start {
+        flex-basis: 100%;
+        .button-start {
+            margin-left: calc(50% - 1.5rem);
+            margin-top: 1rem;
+            height: 2rem;
+            width: 5rem;
+            text-transform: uppercase;
+            color: #ffffff;
+            font-weight: bold;
+            background: #552f7d;
+            font-family: 'Mali', cursive;
+            border-radius: 10%;
+        }
+    }
+
+
+    .player {
+        flex-basis: 25%;
+        display: flex;
+        flex-wrap: wrap;
+        color: #552f7d;
+        font-size: 1.5rem;
+        height: 10rem;
+        justify-content: center;
+
+        .player-title {
+            flex-basis: 60%;
+        }
+
+        .player-name {
+            flex-basis: 60%;
+        }
+
+        .input-player-name {
+            height: 2rem;
+            width: 50%;
+            outline: 3px solid #552f7d;
+            padding-left: 0.2rem;
+        }
+        
+        .button {
+            width: 3rem;
+            height: 2.6rem;
+            font-family: 'Mali', cursive;
+            margin-left: 0.2rem;
+        }
+    }
+
+    .gamefield {
+        width: 33rem;
+        height: 33rem;
+        background-color: #ffffff;
+        border-radius: 15%;
+        margin-top: 2rem;
+        border: 1rem solid #552f7d;
+        display: flex;
+        flex-wrap: wrap;
+
+        .cell {
+            width: 11rem;
+            height: 11rem;
+            box-sizing: border-box;
+            .picture {
+                width: 11rem;
+                height: 10rem;
+            }
+        }
+
+    }
+
+    .best-players {
+        flex-basis: 60%;
+    }
+}
+
+::placeholder {
+    font-family: 'Mali', cursive;
+}
