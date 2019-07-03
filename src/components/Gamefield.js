@@ -5,15 +5,10 @@ class GameField extends React.Component {
     render() {
         return(
         <div className='gamefield'>
-            <Cell />
-            <Cell />
-            <Cell />
-            <Cell />
-            <Cell />
-            <Cell />
-            <Cell />
-            <Cell />
-            <Cell />
+            {this.props.state.cells.map((item) => {
+                return (
+                    <Cell key={item.id} state={item} cellClickAC={this.props.cellClickAC} />)
+            })}
         </div>
         )
     }

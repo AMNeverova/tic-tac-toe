@@ -1,8 +1,9 @@
 import React from 'react';
-import Player from './Player.js';
-import GameField from './Gamefield';
-import BestPlayers from './BestPlayers';
-import Start from './Start'
+import Navbar from './Navbar';
+import Game from './Game';
+import ScoreTable from './ScoreTable'
+import {Switch, Route} from 'react-router-dom' 
+
 
 class App extends React.Component {
     constructor () {
@@ -11,13 +12,13 @@ class App extends React.Component {
 
     render() {
         return (
-        <div className='container'>
-            <Start />
-            <Player />
-            <GameField />
-            <Player />
-            <BestPlayers />
-        </div>
+            <div className='container'>
+                <Navbar />
+                <Switch>
+                    <Route path='/' exact component={Game} />
+                    <Route path='/scoreTable/' exact component={ScoreTable} />
+                </Switch>
+            </div>
         )
     }
 }

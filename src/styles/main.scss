@@ -1,13 +1,19 @@
 @font-face {
-    font-family: 'Mali', cursive;
-    src: url('./Mali-Regular.ttf')
+    font-family: 'maliregular';
+    src: url('mali-regular-webfont.eot');
+    src: url('mali-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('mali-regular-webfont.woff2') format('woff2'),
+         url('mali-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 body {
     margin: 0;
     padding: 0;
     .root {
-        background-image: url('../img/99.jpg')
+        background-image: url('../img/99.jpg');
+        height: 100vh;
     }
 }
 
@@ -17,82 +23,174 @@ body {
     font-family: 'Mali', cursive;
     justify-content: space-around;
 
-    .start {
-        flex-basis: 100%;
-        .button-start {
-            margin-left: calc(50% - 1.5rem);
-            margin-top: 1rem;
-            height: 2rem;
-            width: 5rem;
-            text-transform: uppercase;
-            color: #ffffff;
-            font-weight: bold;
-            background: #552f7d;
-            font-family: 'Mali', cursive;
-            border-radius: 10%;
-        }
-    }
-
-
-    .player {
-        flex-basis: 25%;
-        display: flex;
-        flex-wrap: wrap;
-        color: #552f7d;
-        font-size: 1.5rem;
-        height: 10rem;
-        justify-content: center;
-
-        .player-title {
-            flex-basis: 60%;
-        }
-
-        .player-name {
-            flex-basis: 60%;
-        }
-
-        .input-player-name {
-            height: 2rem;
-            width: 50%;
-            outline: 3px solid #552f7d;
-            padding-left: 0.2rem;
-        }
-        
-        .button {
-            width: 3rem;
-            height: 2.6rem;
-            font-family: 'Mali', cursive;
-            margin-left: 0.2rem;
-        }
-    }
-
-    .gamefield {
-        width: 33rem;
-        height: 33rem;
+    .score-table {
+        margin-top: 5rem;
         background-color: #ffffff;
+        min-height: 25rem;
+        min-width: 30rem;
         border-radius: 15%;
-        margin-top: 2rem;
         border: 1rem solid #552f7d;
+        height: auto;
+        .row {
+            text-align: center;
+            font-size: 1.5rem;
+        }
+    
+    }
+    .navbar {
+        flex-basis: 100%;
+        background-color: #552f7d;
         display: flex;
-        flex-wrap: wrap;
-
-        .cell {
-            width: 11rem;
-            height: 11rem;
-            box-sizing: border-box;
-            .picture {
-                width: 11rem;
-                height: 10rem;
+        .tab {
+            a {
+                color: #ffffff;
+                text-decoration: none;   
+                text-align: center;
+                padding-left: 1rem; 
+                height: 2rem;
+                width: auto;
+                min-width: 7rem;
+                padding-top: 0.6rem;
+                display: block;    
             }
         }
+        .tab.active {
+            background-image: url('../img/99.jpg');
+        }
 
     }
 
-    .best-players {
-        flex-basis: 60%;
+    .game {
+        display: flex;
+        flex-wrap: wrap;
+        flex-basis: 100%;
+
+        .start {
+            flex-basis: 100%;
+            .button-start {
+                margin-left: calc(50% - 8.5rem);
+                margin-top: 1rem;
+                height: 2rem;
+                width: 5rem;
+                text-transform: uppercase;
+                color: #ffffff;
+                font-weight: bold;
+                background: #552f7d;
+                font-family: 'Mali', cursive;
+                border-radius: 10%;
+                border: none;
+            }
+            .button-start:hover {
+                background-color: #4e2c73;
+            } 
+            .button-start:active {
+                background-color: #3e235c;
+                color: #e2daeb;
+            } 
+        }
+        .player {
+            flex-basis: 25%;
+            display: flex;
+            flex-wrap: wrap;
+            color: #552f7d;
+            font-size: 1.5rem;
+            height: 10rem;
+            justify-content: center;
+                
+            .player-title {
+                flex-basis: 60%;
+                margin-bottom: 0;
+            }
+            .player-name {
+                flex-basis: 60%;
+            }
+            .input-player-name {
+                height: 2rem;
+                width: 50%;
+                outline: 3px solid #552f7d;
+                padding-left: 0.2rem;
+            }
+            .button {
+                width: 3rem;
+                height: 2.6rem;
+                font-family: 'Mali', cursive;
+                margin-left: 0.2rem;
+                background-color: #552f7d;
+                color: #ffffff;
+                border: none;
+                border-radius: 10%;
+            }
+            .button:hover {
+                background-color: #4e2c73;
+            } 
+            .button:active {
+                background-color: #3e235c;
+                color: #e2daeb;
+            } 
+        }
+
+        .player.active {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 5%;
+        }
+    
+        .gamefield {
+            width: 30rem;
+            height: 30rem;
+            background-color: #ffffff;
+            border-radius: 15%;
+            margin-top: 2rem;
+            border: 1rem solid #552f7d;
+            display: flex;
+            flex-wrap: wrap;
+    
+            .cell {
+                width: 10rem;
+                height: 10rem;
+                box-sizing: border-box;
+                .picture {
+                    width: 10rem;
+                    height: 9rem;
+                    margin-top: 1rem;
+                }
+            }
+
+            .cell1, .cell2 {
+                border-right: 0.5rem solid #e3e1e1;
+                border-bottom: 0.5rem solid #e3e1e1;
+            }
+
+            .cell3 {
+                border-bottom: 0.5rem solid #e3e1e1;
+            }
+
+            .cell7, .cell8 {
+                border-top: 0.5rem solid #e3e1e1;
+                border-right: 0.5rem solid #e3e1e1;
+            }
+
+            .cell9 {
+                border-top: 0.5rem solid #e3e1e1;
+            }
+
+            .cell4, .cell5 {
+                border-right: 0.5rem solid #e3e1e1;
+            }
+        }
+        .best-players {
+            flex-basis: 60%;
+        }
     }
-}
+    }
 
 ::placeholder {
     font-family: 'Mali', cursive;
 }
+
+.button:hover, .button-start:hover {
+    background-color: #4e2c73;
+} 
+
+.button:active, .button-start:active {
+    background-color: #3e235c;
+} 

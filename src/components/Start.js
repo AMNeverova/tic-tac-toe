@@ -1,5 +1,4 @@
 import React from 'react';
-import { buttonStartAC } from '../redux/PlayersReducer';
 
 class Start extends React.Component {
     constructor( props ){
@@ -8,7 +7,7 @@ class Start extends React.Component {
       }
       
     handleClick () {
-        this.props.dispatch(buttonStartAC())
+        this.props.buttonStartAC()
     }
 
     render() {

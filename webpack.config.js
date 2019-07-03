@@ -8,7 +8,8 @@ let conf = {
     },
     devServer: {
         contentBase: './',
-        publicPath: '/public/'
+        publicPath: '/public/',
+        historyApiFallback: true 
     },
     module: {
         rules: [{
@@ -49,7 +50,7 @@ let conf = {
             ]
         },
         {
-            test: /\.ttf$/,
+            test: /\.(woff|woff2|eot|ttf)$/,
             use:  {
                 loader: 'file-loader?name=./style/[name].[ext]'
             }
