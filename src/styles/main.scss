@@ -41,6 +41,7 @@ body {
         flex-basis: 100%;
         background-color: #552f7d;
         display: flex;
+        justify-content: space-between;
         .tab {
             a {
                 color: #ffffff;
@@ -58,6 +59,24 @@ body {
             background-image: url('../img/99.jpg');
         }
 
+        .empty {
+            flex-basis: 50%;
+        }
+
+        .lang-tab {
+            display: flex;
+            justify-content: flex-end;
+            .lang {
+                color: #ffffff;
+                text-align: center;
+                padding-top: 0.6rem;
+                flex-basis: 2%;
+                margin-right: 1rem;
+                a {
+                    cursor: pointer;
+                }
+            }   
+        }
     }
 
     .game {
@@ -65,8 +84,15 @@ body {
         flex-wrap: wrap;
         flex-basis: 100%;
 
+        .warning {
+            flex-basis: 100%;
+            padding-left: 38%;
+            color: red;
+        }
+
         .start {
             flex-basis: 100%;
+            height: 4.5rem;
             .button-start {
                 margin-left: calc(50% - 8.5rem);
                 margin-top: 1rem;
@@ -106,7 +132,7 @@ body {
             }
             .input-player-name {
                 height: 2rem;
-                width: 50%;
+                width: 53%;
                 outline: 3px solid #552f7d;
                 padding-left: 0.2rem;
             }

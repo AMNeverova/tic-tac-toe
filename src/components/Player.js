@@ -1,4 +1,5 @@
 import React from 'react';
+import {injectIntl, FormattedMessage} from 'react-intl';
 
 class Player extends React.Component {
     
@@ -20,10 +21,10 @@ class Player extends React.Component {
     render() {
         return(
         <div className={this.props.state.className}>
-            <p className='player-title'>{this.props.state.title}</p>
+            <p className='player-title'>{this.props.state.id == 1? <FormattedMessage id="player1Title" defaultMessage="Player1" /> : <FormattedMessage id="player2Title" defaultMessage="Player2" />}</p>
             <div className='player-name'>{this.props.state.name}</div>
             <div>
-                <input type="text" value={this.props.state.value} onChange={this.handleChange} className='input-player-name' placeholder="Enter your name"/>
+                <input type="text" value={this.props.state.value} onChange={this.handleChange} className='input-player-name' placeholder={this.props.intl.messages.placeholder} />
                 <button className='button' onClick={this.handleClick} type='submit'>Ok</button>
             </div>
         </div>
@@ -31,4 +32,4 @@ class Player extends React.Component {
     }
 }
 
-export default Player;
+export default injectIntl(Player);

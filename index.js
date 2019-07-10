@@ -5,11 +5,17 @@ import App from './src/components/App';
 import store from './src/redux/store';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
+import { addLocaleData } from "react-intl";
+import locale_en from 'react-intl/locale-data/en';
+import locale_ru from 'react-intl/locale-data/ru';
+
+addLocaleData(locale_ru);
+addLocaleData(locale_en);
 
     ReactDOM.render((
         <BrowserRouter>
             <Provider store={store}>
-                <App />
+                    <App />
             </Provider>
         </BrowserRouter>
     ), document.querySelector(".root"));

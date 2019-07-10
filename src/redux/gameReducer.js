@@ -34,7 +34,6 @@ export const submitNameAC = (value, id) => {
 const initialState = {
     "players": [{
             "id": 1,
-            "title": "Player 1",
             "active": false,
             "name": "",
             "value": "",
@@ -42,7 +41,6 @@ const initialState = {
         },
         {
             "id": 2,
-            "title": "Player 2",
             "active": false,
             "name": "",
             "value": "",
@@ -95,7 +93,8 @@ const initialState = {
         "content": '',
     }],
     "scoreTable": [],
-    "clicks": 0
+    "clicks": 0,
+    "pressed": false
 }
 
 let gameReducer = (state = initialState, action) => {
@@ -110,6 +109,7 @@ let gameReducer = (state = initialState, action) => {
                 item.className += ' active'
             }
         })
+        stateCopy.pressed = true
         return stateCopy
     }
 
@@ -152,28 +152,29 @@ let gameReducer = (state = initialState, action) => {
             return {...item}
         })
 
-       
-        stateCopy.clicks += 1;
-        stateCopy.cells.map((item) => {
-            if ((stateCopy.clicks % 2 == 0) && (action.cell == item.id) ) {
-                item.content = 'zero'
-            } 
-            if ((stateCopy.clicks % 2 !== 0) && (action.cell == item.id) ) {
-                item.content = 'cross'
-            } 
-        })
+       if (state.pressed) {
+            stateCopy.clicks += 1;
+            stateCopy.cells.map((item) => {
+                if ((stateCopy.clicks % 2 == 0) && (action.cell == item.id) ) {
+                    item.content = 'zero'
+                } 
+                if ((stateCopy.clicks % 2 !== 0) && (action.cell == item.id) ) {
+                    item.content = 'cross'
+                } 
+            })
 
-        stateCopy.players.map((item) => {
-            if (item.active) {
-                item.active = false;
-                item.className = item.className.slice(0, 14)
-            } else {
-                item.active = true;
-                item.className+= " active"
-            }
+            stateCopy.players.map((item) => {
+                if (item.active) {
+                    item.active = false;
+                    item.className = item.className.slice(0, 14)
+                } else {
+                    item.active = true;
+                    item.className+= " active"
+                }
         })
 
         return stateCopy
+    }
     }
     return state
 }

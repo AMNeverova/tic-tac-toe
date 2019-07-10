@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 
 class Start extends React.Component {
     constructor( props ){
@@ -13,7 +14,8 @@ class Start extends React.Component {
     render() {
         return (
             <div className='start'>
-                <button className='button-start' onClick={this.handleClick}>Start</button>
+                <button className='button-start' onClick={this.handleClick}><FormattedMessage id="button-start" defaultMessage="Start"/></button>
+                {this.props.state? null : <div className="warning">Please, press Start</div> }
             </div>
         )
     }
