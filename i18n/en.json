@@ -4,5 +4,6 @@
     "player2Title": "Player 2",
     "tab.game": "Game",
     "tab.scoreTable": "Score table",
-    "placeholder": "Enter your name"
+    "placeholder": "Enter your name",
+    "drawGame": "Draw game"
 }

@@ -22,6 +22,7 @@ module.exports = {
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
         "no-debugger": "off",
-        "no-console": "off"
+        "no-console": "off",
+        "no-useless-escape": "off"
     }
 };

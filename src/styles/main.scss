@@ -32,8 +32,8 @@ body {
         border: 1rem solid #552f7d;
         height: auto;
         .row {
-            text-align: center;
             font-size: 1.5rem;
+            padding-left: 10rem;
         }
     
     }
@@ -60,7 +60,7 @@ body {
         }
 
         .empty {
-            flex-basis: 50%;
+            flex-basis: 68%;
         }
 
         .lang-tab {
@@ -83,18 +83,53 @@ body {
         display: flex;
         flex-wrap: wrap;
         flex-basis: 100%;
+        justify-content: space-around;
 
         .warning {
             flex-basis: 100%;
-            padding-left: 38%;
             color: red;
+            text-align: center;
+        }
+
+        .game-counter {
+            flex-basis: 33%;
+            .counter-text {
+                margin: 1rem 0 0 14rem;
+                padding-left: 0.4rem;
+                width: 7rem;
+                font-size: 1.5rem;
+                background-color: rgba(255, 255, 255, 0.7);
+                border-radius: 0.4rem;
+                color: #552f7d;
+                height: 3rem;
+                text-align: center;
+                font-size: 2rem;
+                box-shadow: 0 0 0.5rem;
+            }
+        }
+
+        .winner-message {
+            flex-basis: 33%;
+            .winner-text {
+                margin: 1rem 0 0 4rem;
+                padding-left: 0.4rem;
+                width: 14rem;
+                height: 3rem;
+                text-align: center;
+                font-size: 2rem;
+                font-weight: bold;
+                background-color: rgba(255, 255, 255, 0.7);
+                border-radius: 0.4rem;
+                color: #f78540;
+                box-shadow: 0 0 0.5rem #552f7d;
+            }
         }
 
         .start {
-            flex-basis: 100%;
             height: 4.5rem;
+            flex-basis: 33%;
             .button-start {
-                margin-left: calc(50% - 8.5rem);
+                margin-left: calc(50% - 3rem);
                 margin-top: 1rem;
                 height: 2rem;
                 width: 5rem;
@@ -115,7 +150,11 @@ body {
             } 
         }
         .player {
-            flex-basis: 25%;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 5%;
+            border: 0.2rem solid #552f7d;
+            margin-top: 7rem;
+            flex-basis: 19%;
             display: flex;
             flex-wrap: wrap;
             color: #552f7d;
@@ -134,7 +173,8 @@ body {
                 height: 2rem;
                 width: 53%;
                 outline: 3px solid #552f7d;
-                padding-left: 0.2rem;
+                padding-left: 0.5rem;
+                margin-left: 1rem;
             }
             .button {
                 width: 3rem;
@@ -156,8 +196,7 @@ body {
         }
 
         .player.active {
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 5%;
+            box-shadow: 0 0 1rem 1rem #fffdbd;
         }
     
         .gamefield {
@@ -202,6 +241,92 @@ body {
             .cell4, .cell5 {
                 border-right: 0.5rem solid #e3e1e1;
             }
+        }
+
+        .line1::before {
+            content: "";
+            background-color: #c9c9c9;
+            width: 30rem;
+            height: 1rem;
+            top: 15rem;
+            position: absolute;
+        }
+
+        .line2::before {
+            content: "";
+            background-color: #c9c9c9;
+            width: 30rem;
+            height: 1rem;
+            top: 25rem;
+            position: absolute;
+        }
+
+        .line3::before {
+            content: "";
+            background-color: #c9c9c9;
+            width: 30rem;
+            height: 1rem;
+            top: 35rem;
+            position: absolute;
+        }
+
+        .line4::before {
+            content: "";
+            background-color: #c9c9c9;
+            width: 1rem;
+            height: 30rem;
+            top: 10.1rem;
+            left: 32rem;
+            position: absolute;
+        }
+
+        .line5::before {
+            content: "";
+            background-color: #c9c9c9;
+            width: 1rem;
+            height: 30rem;
+            top: 10.1rem;
+            left: 42rem;
+            position: absolute;
+        }
+
+        .line6::before {
+            content: "";
+            background-color: #c9c9c9;
+            width: 1rem;
+            height: 30rem;
+            top: 10.1rem;
+            left: 52rem;
+            position: absolute;
+        }
+
+        .line7::before {
+            content: "";
+            background-color: #c9c9c9;
+            width: 1rem;
+            height: 38rem;
+            top: 6rem;
+            left: 42rem;
+            position: absolute;
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+        .line8::before {
+            content: "";
+            background-color: #c9c9c9;
+            width: 1rem;
+            height: 38rem;
+            top: 6rem;
+            left: 42rem;
+            position: absolute;
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
         }
         .best-players {
             flex-basis: 60%;

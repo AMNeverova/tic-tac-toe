@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {clickTabAC} from '../redux/tabReducer';
+import {clickTabAC} from '../redux/actionCreators';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
 

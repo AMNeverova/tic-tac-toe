@@ -1,8 +1,4 @@
-export const changeToEnActionType = 'CHANGE-TO-ENG';
-export const changeToRuActionType = 'CHANGE-TO-RU';
-
-export const changeToEnAC = () => ({type: changeToEnActionType});
-export const changeToRuAC = () => ({type: changeToRuActionType});
+import { changeToEnActionType, changeToRuActionType } from "./actionTypes";
 
 let initialState = {
     lang: "ru"

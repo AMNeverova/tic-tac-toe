@@ -7,7 +7,7 @@ import {IntlProvider} from "react-intl";
 import ru from '../../i18n/ru.json';
 import en from '../../i18n/en.json';
 import {connect} from 'react-redux';
-import {changeToEnAC, changeToRuAC} from '../redux/langReducer';
+import {changeToEnAC, changeToRuAC} from '../redux/actionCreators';
 
 const translations = {
     ru,

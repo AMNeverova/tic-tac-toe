@@ -1,4 +1,4 @@
-export const clickTabActionType = 'TAB-CLICK';
+import { clickTabActionType } from "./actionTypes";
 
 let initialState = [
     {
@@ -16,13 +16,6 @@ let initialState = [
         text: "Таблица результатов"
     }
 ]
-
-export const clickTabAC = (id) => {
-    return {
-        type: clickTabActionType,
-        id: id
-    }
-}
 
 let tabReducer = (state = initialState, action) => {
     if (action.type == clickTabActionType) {

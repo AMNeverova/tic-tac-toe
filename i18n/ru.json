@@ -4,5 +4,6 @@
     "player2Title": "Игрок 2",
     "tab.game": "Игра",
     "tab.scoreTable": "Таблица результатов",
-    "placeholder": "Введите Ваше имя" 
+    "placeholder": "Введите Ваше имя",
+    "drawGame": "Ничья"
 }
