@@ -1,4 +1,4 @@
-import { cellClickActionType, buttonStartActionType, enterNameActionType, submitNameActionType, changeToEnActionType, changeToRuActionType, clickTabActionType } from "./actionTypes";
+import { cellClickActionType, buttonStartActionType, enterNameActionType, submitNameActionType, changeToEnActionType, changeToRuActionType, clickTabActionType, clickModalActionType } from "./actionTypes";
 
 export let cellClickAC = (cellId) => {
     return {
@@ -38,3 +38,4 @@ export const clickTabAC = (id) => {
     }
 }
 
+export const clickModalAC = () => ({type: clickModalActionType})

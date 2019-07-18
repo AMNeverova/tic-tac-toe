@@ -3,7 +3,8 @@ import {
     buttonStartActionType,
     enterNameActionType,
     submitNameActionType,
-    cellClickActionType
+    cellClickActionType,
+    clickModalActionType
 } from "./actionTypes";
 
 const initialState = {
@@ -71,8 +72,10 @@ const initialState = {
     "winner": '',
     "clicks": 0,
     "pressed": false,
-    "winnerMessage": '',
-    "gameNumber": 0
+    "winnerName": '',
+    "gameNumber": 0,
+    "modalVisible": false,
+    "gamefieldClassName": "gamefield"
 }
 
 let gameReducer = (state = initialState, action) => {
@@ -102,14 +105,18 @@ let gameReducer = (state = initialState, action) => {
         stateCopy.winner = ''
         stateCopy.pressed = true;
         stateCopy.gameNumber += 1;
-        if (stateCopy.winnerMessage) {
-            stateCopy.winnerMessage = '';
+        if (stateCopy.winnerName) {
+            stateCopy.winnerName = '';
         }
 
         if (stateCopy.clicks != 0) {
             stateCopy.clicks = 0;
         }
-        document.querySelector('.gamefield').classList = 'gamefield'
+
+        let reg = new RegExp('line\\d');
+        if (stateCopy.gamefieldClassName.match(reg)) {
+            stateCopy.gamefieldClassName = 'gamefield'
+        }
         return stateCopy
     }
 
@@ -159,7 +166,7 @@ let gameReducer = (state = initialState, action) => {
             return {...item}
         })
 
-        if (state.pressed && !state.winnerMessage) {
+        if (state.pressed && !state.winnerName) {
             stateCopy.clicks += 1;
             stateCopy.cells.map((item) => {
                 if ((stateCopy.clicks % 2 == 0) && (action.cell == item.id)) {
@@ -182,7 +189,7 @@ let gameReducer = (state = initialState, action) => {
 
             if (stateCopy.cells[0].content && stateCopy.cells[0].content == stateCopy.cells[1].content && stateCopy.cells[0].content == stateCopy.cells[2].content) {
 
-                document.querySelector('.gamefield').classList.add('line1');
+                stateCopy.gamefieldClassName += ' line1'
 
                 if (stateCopy.cells[0].content == 'cross') {
                     stateCopy.winner = 'cross'
@@ -193,7 +200,7 @@ let gameReducer = (state = initialState, action) => {
 
             if (stateCopy.cells[3].content && stateCopy.cells[3].content == stateCopy.cells[4].content && stateCopy.cells[3].content == stateCopy.cells[5].content) {
 
-                document.querySelector('.gamefield').classList.add('line2');
+                stateCopy.gamefieldClassName += ' line2'
 
                 if (stateCopy.cells[3].content == 'cross') {
                     stateCopy.winner = 'cross'
@@ -203,7 +210,7 @@ let gameReducer = (state = initialState, action) => {
             }
             if (stateCopy.cells[6].content && stateCopy.cells[6].content == stateCopy.cells[7].content && stateCopy.cells[6].content == stateCopy.cells[8].content) {
 
-                document.querySelector('.gamefield').classList.add('line3');
+                stateCopy.gamefieldClassName += ' line3'
 
                 if (stateCopy.cells[6].content == 'cross') {
                     stateCopy.winner = 'cross'
@@ -212,7 +219,7 @@ let gameReducer = (state = initialState, action) => {
                 }
             }
             if (stateCopy.cells[0].content && stateCopy.cells[0].content == stateCopy.cells[3].content && stateCopy.cells[0].content == stateCopy.cells[6].content) {
-                document.querySelector('.gamefield').classList.add('line4');
+                stateCopy.gamefieldClassName += ' line4'
                 if (stateCopy.cells[0].content == 'cross') {
                     stateCopy.winner = 'cross'
                 } else {
@@ -220,7 +227,7 @@ let gameReducer = (state = initialState, action) => {
                 }
             }
             if (stateCopy.cells[1].content && stateCopy.cells[1].content == stateCopy.cells[4].content && stateCopy.cells[1].content == stateCopy.cells[7].content) {
-                document.querySelector('.gamefield').classList.add('line5');
+                stateCopy.gamefieldClassName += ' line5'
 
                 if (stateCopy.cells[1].content == 'cross') {
                     stateCopy.winner = 'cross'
@@ -229,7 +236,7 @@ let gameReducer = (state = initialState, action) => {
                 }
             }
             if (stateCopy.cells[2].content && stateCopy.cells[2].content == stateCopy.cells[5].content && stateCopy.cells[2].content == stateCopy.cells[8].content) {
-                document.querySelector('.gamefield').classList.add('line6');
+                stateCopy.gamefieldClassName += ' line6'
 
                 if (stateCopy.cells[2].content == 'cross') {
                     stateCopy.winner = 'cross'
@@ -239,7 +246,7 @@ let gameReducer = (state = initialState, action) => {
 
             }
             if (stateCopy.cells[0].content && stateCopy.cells[0].content == stateCopy.cells[4].content && stateCopy.cells[0].content == stateCopy.cells[8].content) {
-                document.querySelector('.gamefield').classList.add('line7');
+                stateCopy.gamefieldClassName += ' line7'
                 if (stateCopy.cells[0].content == 'cross') {
                     stateCopy.winner = 'cross'
                 } else {
@@ -248,15 +255,16 @@ let gameReducer = (state = initialState, action) => {
 
             }
             if (stateCopy.cells[2].content && stateCopy.cells[2].content == stateCopy.cells[4].content && stateCopy.cells[2].content == stateCopy.cells[6].content) {
-                document.querySelector('.gamefield').classList.add('line8');
+                stateCopy.gamefieldClassName += ' line8'
                 if (stateCopy.cells[2].content == 'cross') {
                     stateCopy.winner = 'cross'
                 } else {
                     stateCopy.winner = 'zero'
                 }
             }
-            if (stateCopy.clicks == 9 && !stateCopy.winnerMessage) {
-                stateCopy.winnerMessage = 'It is a draw!';
+            if (stateCopy.clicks == 9 && !stateCopy.winnerName) {
+                stateCopy.winnerName = 'It is a draw!';
+                stateCopy.modalVisible = true;
                 if (localStorage.getItem('scoreTable')) {
                     let winnersArray = JSON.parse(localStorage.getItem('scoreTable'));
                     if (winnersArray.length >= 12) {
@@ -271,7 +279,8 @@ let gameReducer = (state = initialState, action) => {
             if (stateCopy.winner) {
                 if (stateCopy.winner == 'cross') {
                     if (stateCopy.players[0].name) {
-                        stateCopy.winnerMessage = `${stateCopy.players[0].name} wins!`;
+                        stateCopy.winnerName = stateCopy.players[0].name;
+                        stateCopy.modalVisible = true;
                         if (localStorage.getItem('scoreTable')) {
                             let winnersArray = JSON.parse(localStorage.getItem('scoreTable'));
                             if (winnersArray.length >= 12) {
@@ -282,7 +291,8 @@ let gameReducer = (state = initialState, action) => {
                         } else {
                         localStorage.setItem('scoreTable', JSON.stringify([stateCopy.players[0].name]));}
                     } else {
-                        stateCopy.winnerMessage = 'Player1 wins!';
+                        stateCopy.winnerName = 'Player1';
+                        stateCopy.modalVisible = true;
                         if (localStorage.getItem('scoreTable')) {
                             let winnersArray = JSON.parse(localStorage.getItem('scoreTable'));
                             if (winnersArray.length >= 12) {
@@ -296,7 +306,8 @@ let gameReducer = (state = initialState, action) => {
 
                 } else {
                     if (stateCopy.players[1].name) {
-                        stateCopy.winnerMessage = `${stateCopy.players[1].name} wins!`;
+                        stateCopy.winnerName = stateCopy.players[1].name;
+                        stateCopy.modalVisible = true;
                         if (localStorage.getItem('scoreTable')) {
                             let winnersArray = JSON.parse(localStorage.getItem('scoreTable'));
                             if (winnersArray.length >= 12) {
@@ -307,7 +318,8 @@ let gameReducer = (state = initialState, action) => {
                         } else {
                         localStorage.setItem('scoreTable', JSON.stringify([stateCopy.players[1].name]));}
                     } else {
-                        stateCopy.winnerMessage = 'Player2 wins!';
+                        stateCopy.winnerName = 'Player2';
+                        stateCopy.modalVisible = true;
                         if (localStorage.getItem('scoreTable')) {
                             let winnersArray = JSON.parse(localStorage.getItem('scoreTable'));
                             if (winnersArray.length >= 12) {
@@ -321,6 +333,12 @@ let gameReducer = (state = initialState, action) => {
                 }
             }
         }
+        return stateCopy
+    }
+
+    if (action.type === clickModalActionType) {
+        let stateCopy = {...state}
+        stateCopy.modalVisible = false;
         return stateCopy
     }
     return state

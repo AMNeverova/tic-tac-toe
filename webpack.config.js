@@ -52,7 +52,7 @@ let conf = {
         {
             test: /\.(woff|woff2|eot|ttf)$/,
             use:  {
-                loader: 'file-loader?name=./style/[name].[ext]'
+                loader: 'file-loader?name=./public/style/[name].[ext]'
             }
         }
     ]

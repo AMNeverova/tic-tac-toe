@@ -5,5 +5,8 @@
     "tab.game": "Game",
     "tab.scoreTable": "Score table",
     "placeholder": "Enter your name",
-    "drawGame": "Draw game"
+    "drawGame": "Draw game",
+    "drawGameMessage": "It is a draw!",
+    "wins": " wins!",
+    "modalTitle": "Winner"
 }

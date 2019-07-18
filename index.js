@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import App from './src/components/App';
 import store from './src/redux/store';
-import {BrowserRouter} from 'react-router-dom';
+import {HashRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import { addLocaleData } from "react-intl";
 import locale_en from 'react-intl/locale-data/en';
@@ -13,11 +13,11 @@ addLocaleData(locale_ru);
 addLocaleData(locale_en);
 
     ReactDOM.render((
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                     <App />
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     ), document.querySelector(".root"));
 
 

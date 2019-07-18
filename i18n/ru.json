@@ -5,5 +5,8 @@
     "tab.game": "Игра",
     "tab.scoreTable": "Таблица результатов",
     "placeholder": "Введите Ваше имя",
-    "drawGame": "Ничья"
+    "drawGame": "Ничья",
+    "drawGameMessage": "Ничья!",
+    "wins": " выигрывает!",
+    "modalTitle": "Победитель"
 }
