@@ -112,7 +112,9 @@ html {
             .warning {
                 flex-basis: 100%;
                 color: $red;
-                padding-left: 9.5rem;
+                padding-left: 9.1rem;
+                padding-top: 0.5rem;
+                font-weight: 500;
                 font-family: $font-family;
             }
             .button-start {
@@ -152,7 +154,7 @@ html {
             }
             .input-player-name {
                 height: 2rem;
-                width: 55%;
+                width: 10rem;
                 outline: 3px solid $purple-main;
                 padding-left: 0.5rem;
                 margin-left: 1rem;
@@ -266,11 +268,11 @@ html {
 }
 
 ::placeholder {
-    font-family: cursive;
+    font-family: $font-family;
 }
 
-::-ms-input-placeholder {
-    font-family: 'Comic Sans', cursive;   
+:-ms-input-placeholder {
+    font-family: $font-family;
 }
 
 .button:hover,
