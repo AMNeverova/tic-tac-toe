@@ -2,8 +2,8 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
 class Start extends React.Component {
-    constructor( props ){
-        super( props );
+    constructor(){
+        super();
         this.handleClick = this.handleClick.bind(this);
       }
       
@@ -14,8 +14,8 @@ class Start extends React.Component {
     render() {
         return (
             <div className='start'>
-                <button className='button-start' onClick={this.handleClick}><FormattedMessage id="button-start" defaultMessage="Start"/></button>
-                {this.props.state? null : <div className="warning">Please, press Start</div> }
+                <button className='button-start' onClick={this.handleClick}><FormattedMessage id='button-start' defaultMessage='Start'/></button>
+                {this.props.state? null : <div className='warning'><FormattedMessage id='warning' default='Please, press Start' /></div> }
             </div>
         )
     }

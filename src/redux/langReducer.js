@@ -1,4 +1,4 @@
-import { changeToEnActionType, changeToRuActionType } from "./actionTypes";
+import {changeToEnActionType, changeToRuActionType} from "./actionTypes";
 
 let initialState = {
     lang: "ru"
@@ -6,13 +6,17 @@ let initialState = {
 
 let langReducer = (state = initialState, action) => {
     if (action.type === changeToEnActionType && state.lang == "ru") {
-        let stateCopy = {...state}
+        let stateCopy = {
+            ...state
+        }
         stateCopy.lang = "en"
         return stateCopy
     }
 
     if (action.type === changeToRuActionType && state.lang == "en") {
-        let stateCopy = {...state}
+        let stateCopy = {
+            ...state
+        }
         stateCopy.lang = "ru"
         return stateCopy
     }

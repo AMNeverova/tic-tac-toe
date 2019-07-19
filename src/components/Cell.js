@@ -1,7 +1,7 @@
 /* eslint no-unused-vars: 0 */
 import React from 'react';
-import cross from '../img/cross.png'
-import zero from '../img/zero.png'
+import cross from '../img/cross.png';
+import zero from '../img/zero.png';
 
 class Cell extends React.Component {
     constructor() {
@@ -14,12 +14,12 @@ class Cell extends React.Component {
     }
 
     render() {
-        return(
-        <div onClick={this.handleClick} className={this.props.state.className}>
-            {this.props.state.content? <img className='picture' src={this.props.state.content == 'cross'? cross : zero} /> : null} 
-        </div>
+        return (
+            <div onClick={this.handleClick} className={this.props.state.className}>
+                {this.props.state.content? <img className='picture' src={this.props.state.content == 'cross'? cross : zero} /> : null} 
+            </div>
         )
     }
 }
 
-export default Cell
+export default Cell;

@@ -18,6 +18,4 @@ addLocaleData(locale_en);
                     <App />
             </Provider>
         </HashRouter>
-    ), document.querySelector(".root"));
-
-
+    ), document.querySelector('.root'));

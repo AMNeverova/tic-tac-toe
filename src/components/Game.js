@@ -34,13 +34,13 @@ class Game extends React.Component {
             <div className='game'>
                 <Modal onClickAway={()=>this.closeModal()} visible={this.props.state.modalVisible} width='300' height='200' effect="fadeInUp">
                     <div>
-                        <div className="modal-title"><FormattedMessage id='modalTitle' default='Winner' /></div>
-                        <div className="modal-content">
-                            <div className="modal-text">
+                        <div className='modal-title'><FormattedMessage id='modalTitle' default='Winner' /></div>
+                        <div className='modal-content'>
+                            <div className='modal-text'>
                                 {name}
-                                {this.props.winnerName == 'It is a draw!'? null : <FormattedMessage id="wins" default="wins!"/>}
+                                {this.props.state.winnerName == 'It is a draw!'? null : <FormattedMessage id='wins' default="wins!"/>}
                             </div>
-                            <button className="button-modal" onClick={() => this.closeModal()}>Ok</button>
+                            <button className='button-modal' onClick={() => this.closeModal()}>Ok</button>
                         </div>
                     </div>
                 </Modal>
@@ -57,4 +57,3 @@ class Game extends React.Component {
 const mapStateToProps = state => ({state: state.game})
 
 export default connect(mapStateToProps, {enterNameAC, buttonStartAC, submitNameAC, cellClickAC, clickModalAC})(Game);
-

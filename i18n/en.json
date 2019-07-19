@@ -8,5 +8,7 @@
     "drawGame": "Draw game",
     "drawGameMessage": "It is a draw!",
     "wins": " wins!",
-    "modalTitle": "Winner"
+    "modalTitle": "Winner",
+    "game": "Game",
+    "warning": "Please, press Start"
 }

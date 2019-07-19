@@ -1,5 +1,5 @@
-import { combineReducers, createStore } from "redux";
-import gameReducer from "./gameReducer";
+import { combineReducers, createStore } from 'redux';
+import gameReducer from './gameReducer';
 import tabReducer from './tabReducer';
 import langReducer from './langReducer';
 
@@ -11,4 +11,4 @@ let reducers = combineReducers({
 
 let store = createStore(reducers)
 
-export default store
+export default store;

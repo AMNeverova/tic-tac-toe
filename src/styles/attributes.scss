@@ -1,0 +1,47 @@
+/* images */
+
+$html-background-img: url('../img/99.jpg');
+
+/* colors */
+
+$white: #ffffff;
+$red: #ff0000;
+$purple-main: #552f7d;
+$counter-background: rgba(255, 255, 255, 0.7);
+$buttons-hover: #4e2c73;
+$buttons-active: #3e235c;
+$buttons-text-active: #e2daeb;
+$background-modal: #d5f2f5;
+$gamefield-line: #c9c9c9;
+$border-cell: 0.5rem solid #e3e1e1;
+$shadow-player: 0 0 1rem 1rem #fffdbd;
+
+/* font */
+
+$font-family: 'Comfortaa';
+
+/* mixins */
+
+@mixin rotate-line7 {
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+@mixin rotate-line8 {
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+@mixin line {
+    width: 1rem;
+    height: 30rem;
+    position: absolute;
+    content: "";
+    background-color: $gamefield-line;
+}

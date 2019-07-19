@@ -7,12 +7,7 @@ export let cellClickAC = (cellId) => {
     }
 }
 
-export let buttonStartAC = () => {
-    return {
-        type: buttonStartActionType
-    }
-}
-
+export let buttonStartAC = () => ({type: buttonStartActionType});
 export let enterNameAC = (newText, id) => {
     return {
         type: enterNameActionType,

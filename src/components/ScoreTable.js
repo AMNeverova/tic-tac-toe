@@ -1,9 +1,10 @@
 import React from 'react';
 import Row from './Row';
+import store from 'store';
 
 class ScoreTable extends React.Component {
     render() {
-        let winnersArray = JSON.parse(localStorage.getItem('scoreTable'));
+        let winnersArray = store.get('scoreTable')
         let RowComponents = []
         if (winnersArray) {
             for (let i = 0; i < winnersArray.length; i++ ) {

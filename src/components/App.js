@@ -15,10 +15,6 @@ const translations = {
 }
 
 class App extends React.Component {
-    constructor () {
-        super()
-    }
-
     render() {
         return (
             <IntlProvider locale={this.props.state.lang} messages={translations[this.props.state.lang]}>

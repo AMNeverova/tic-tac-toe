@@ -1,10 +1,14 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 class GameCounter extends React.Component {
     render() {
-        return(
+        return (
         <div className='game-counter'>
-            {this.props.state.gameNumber !== 0?<div className='counter-text'>{`Игра ${this.props.state.gameNumber} `}</div> : null}
+            {this.props.state.gameNumber !== 0?
+                <div className='counter-text'>
+                    <FormattedMessage id='game' default='Game'/>{` ${this.props.state.gameNumber}`}
+                </div> : null}
         </div>
         )
     }

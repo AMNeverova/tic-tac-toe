@@ -1,4 +1,4 @@
-import { clickTabActionType } from "./actionTypes";
+import { clickTabActionType } from './actionTypes';
 
 let initialState = [
     {
@@ -28,15 +28,12 @@ let tabReducer = (state = initialState, action) => {
             document.querySelector(`.tab${item.id}`).classList.remove('active');
             if (item.id == action.id) {
                 item.active = true;
-                document.querySelector(`.tab${item.id}`).classList.add('active')
+                document.querySelector(`.tab${item.id}`).classList.add('active');
             }
         })
         return stateCopy
     }
     return state
 }
-    
-    
-
 
 export default tabReducer;

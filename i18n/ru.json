@@ -8,5 +8,7 @@
     "drawGame": "Ничья",
     "drawGameMessage": "Ничья!",
     "wins": " выигрывает!",
-    "modalTitle": "Победитель"
+    "modalTitle": "Победитель",
+    "game": "Игра",
+    "warning": "Нажмите Начать"
 }

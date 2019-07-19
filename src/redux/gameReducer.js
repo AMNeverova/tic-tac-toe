@@ -1,4 +1,4 @@
-/* eslint no-useless-escape: 0 */  // --> OFF
+/* eslint no-useless-escape: 0 */ // --> OFF
 import {
     buttonStartActionType,
     enterNameActionType,
@@ -6,6 +6,8 @@ import {
     cellClickActionType,
     clickModalActionType
 } from "./actionTypes";
+
+import store from 'store';
 
 const initialState = {
     "players": [{
@@ -80,13 +82,9 @@ const initialState = {
 
 let gameReducer = (state = initialState, action) => {
     if (action.type === buttonStartActionType) {
-        let stateCopy = {
-            ...state
-        }
+        let stateCopy = {...state}
         stateCopy.players = state.players.map((item) => {
-            return {
-                ...item
-            }
+            return {...item}
         })
         stateCopy.players.map((item) => {
             if (item.id == 1) {
@@ -100,7 +98,10 @@ let gameReducer = (state = initialState, action) => {
         })
 
         stateCopy.cells = state.cells.map((item) => {
-            return {...item, content: ''}
+            return {
+                ...item,
+                content: ''
+            }
         })
         stateCopy.winner = ''
         stateCopy.pressed = true;
@@ -121,13 +122,9 @@ let gameReducer = (state = initialState, action) => {
     }
 
     if (action.type === enterNameActionType) {
-        let stateCopy = {
-            ...state
-        }
+        let stateCopy = {...state}
         stateCopy.players = state.players.map((item) => {
-            return {
-                ...item
-            }
+            return {...item}
         })
 
         stateCopy.players.map((item) => {
@@ -139,13 +136,9 @@ let gameReducer = (state = initialState, action) => {
     }
 
     if (action.type === submitNameActionType) {
-        let stateCopy = {
-            ...state
-        }
+        let stateCopy = {...state}
         stateCopy.players = state.players.map((item) => {
-            return {
-                ...item
-            }
+            return {...item}
         })
 
         stateCopy.players.map((item) => {
@@ -188,20 +181,15 @@ let gameReducer = (state = initialState, action) => {
             })
 
             if (stateCopy.cells[0].content && stateCopy.cells[0].content == stateCopy.cells[1].content && stateCopy.cells[0].content == stateCopy.cells[2].content) {
-
                 stateCopy.gamefieldClassName += ' line1'
-
                 if (stateCopy.cells[0].content == 'cross') {
                     stateCopy.winner = 'cross'
                 } else {
                     stateCopy.winner = 'zero'
                 }
             }
-
             if (stateCopy.cells[3].content && stateCopy.cells[3].content == stateCopy.cells[4].content && stateCopy.cells[3].content == stateCopy.cells[5].content) {
-
                 stateCopy.gamefieldClassName += ' line2'
-
                 if (stateCopy.cells[3].content == 'cross') {
                     stateCopy.winner = 'cross'
                 } else {
@@ -209,9 +197,7 @@ let gameReducer = (state = initialState, action) => {
                 }
             }
             if (stateCopy.cells[6].content && stateCopy.cells[6].content == stateCopy.cells[7].content && stateCopy.cells[6].content == stateCopy.cells[8].content) {
-
                 stateCopy.gamefieldClassName += ' line3'
-
                 if (stateCopy.cells[6].content == 'cross') {
                     stateCopy.winner = 'cross'
                 } else {
@@ -228,7 +214,6 @@ let gameReducer = (state = initialState, action) => {
             }
             if (stateCopy.cells[1].content && stateCopy.cells[1].content == stateCopy.cells[4].content && stateCopy.cells[1].content == stateCopy.cells[7].content) {
                 stateCopy.gamefieldClassName += ' line5'
-
                 if (stateCopy.cells[1].content == 'cross') {
                     stateCopy.winner = 'cross'
                 } else {
@@ -237,13 +222,11 @@ let gameReducer = (state = initialState, action) => {
             }
             if (stateCopy.cells[2].content && stateCopy.cells[2].content == stateCopy.cells[5].content && stateCopy.cells[2].content == stateCopy.cells[8].content) {
                 stateCopy.gamefieldClassName += ' line6'
-
                 if (stateCopy.cells[2].content == 'cross') {
                     stateCopy.winner = 'cross'
                 } else {
                     stateCopy.winner = 'zero'
                 }
-
             }
             if (stateCopy.cells[0].content && stateCopy.cells[0].content == stateCopy.cells[4].content && stateCopy.cells[0].content == stateCopy.cells[8].content) {
                 stateCopy.gamefieldClassName += ' line7'
@@ -252,7 +235,6 @@ let gameReducer = (state = initialState, action) => {
                 } else {
                     stateCopy.winner = 'zero'
                 }
-
             }
             if (stateCopy.cells[2].content && stateCopy.cells[2].content == stateCopy.cells[4].content && stateCopy.cells[2].content == stateCopy.cells[6].content) {
                 stateCopy.gamefieldClassName += ' line8'
@@ -265,70 +247,73 @@ let gameReducer = (state = initialState, action) => {
             if (stateCopy.clicks == 9 && !stateCopy.winnerName) {
                 stateCopy.winnerName = 'It is a draw!';
                 stateCopy.modalVisible = true;
-                if (localStorage.getItem('scoreTable')) {
-                    let winnersArray = JSON.parse(localStorage.getItem('scoreTable'));
+                if (store.get('scoreTable')) {
+                    let winnersArray = store.get('scoreTable')
                     if (winnersArray.length >= 12) {
                         winnersArray = winnersArray.slice(-11)
                     }
                     winnersArray.push('Draw game');
-                    localStorage.setItem('scoreTable', JSON.stringify(winnersArray));
+                    store.set('scoreTable', winnersArray)
                 } else {
-                localStorage.setItem('scoreTable', JSON.stringify(['Draw game']));}
+                    store.set('scoreTable', ['Draw game'])
+                }
             }
-
             if (stateCopy.winner) {
                 if (stateCopy.winner == 'cross') {
                     if (stateCopy.players[0].name) {
                         stateCopy.winnerName = stateCopy.players[0].name;
                         stateCopy.modalVisible = true;
-                        if (localStorage.getItem('scoreTable')) {
-                            let winnersArray = JSON.parse(localStorage.getItem('scoreTable'));
+                        if (store.get('scoreTable')) {
+                            let winnersArray = store.get('scoreTable')
                             if (winnersArray.length >= 12) {
                                 winnersArray = winnersArray.slice(-11)
                             }
                             winnersArray.push(stateCopy.players[0].name);
-                            localStorage.setItem('scoreTable', JSON.stringify(winnersArray));
+                            store.set('scoreTable', winnersArray)
                         } else {
-                        localStorage.setItem('scoreTable', JSON.stringify([stateCopy.players[0].name]));}
+                            store.set('scoreTable', [stateCopy.players[0].name])
+                        }
                     } else {
                         stateCopy.winnerName = 'Player1';
                         stateCopy.modalVisible = true;
-                        if (localStorage.getItem('scoreTable')) {
-                            let winnersArray = JSON.parse(localStorage.getItem('scoreTable'));
+                        if (store.get('scoreTable')) {
+                            let winnersArray = store.get('scoreTable')
                             if (winnersArray.length >= 12) {
                                 winnersArray = winnersArray.slice(-11)
                             }
                             winnersArray.push('Player1');
-                            localStorage.setItem('scoreTable', JSON.stringify(winnersArray));
+                            store.set('scoreTable', winnersArray)
                         } else {
-                        localStorage.setItem('scoreTable', JSON.stringify(['Player1']));}
+                            store.set('scoreTable', ['Player1'])
+                        }
                     }
-
                 } else {
                     if (stateCopy.players[1].name) {
                         stateCopy.winnerName = stateCopy.players[1].name;
                         stateCopy.modalVisible = true;
-                        if (localStorage.getItem('scoreTable')) {
-                            let winnersArray = JSON.parse(localStorage.getItem('scoreTable'));
+                        if (store.get('scoreTable')) {
+                            let winnersArray = store.get('scoreTable')
                             if (winnersArray.length >= 12) {
                                 winnersArray = winnersArray.slice(-11)
                             }
                             winnersArray.push(stateCopy.players[1].name);
-                            localStorage.setItem('scoreTable', JSON.stringify(winnersArray));
+                            store.set('scoreTable', winnersArray)
                         } else {
-                        localStorage.setItem('scoreTable', JSON.stringify([stateCopy.players[1].name]));}
+                            store.set('scoreTable', [stateCopy.players[1].name])
+                        }
                     } else {
                         stateCopy.winnerName = 'Player2';
                         stateCopy.modalVisible = true;
-                        if (localStorage.getItem('scoreTable')) {
-                            let winnersArray = JSON.parse(localStorage.getItem('scoreTable'));
+                        if (store.get('scoreTable')) {
+                            let winnersArray = store.get('scoreTable')
                             if (winnersArray.length >= 12) {
                                 winnersArray = winnersArray.slice(-11)
                             }
                             winnersArray.push('Player2');
-                            localStorage.setItem('scoreTable', JSON.stringify(winnersArray));
+                            store.set('scoreTable', winnersArray)
                         } else {
-                        localStorage.setItem('scoreTable', JSON.stringify(['Player2']));}
+                            store.set('scoreTable', ['Player2'])
+                        }
                     }
                 }
             }
