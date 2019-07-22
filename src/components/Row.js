@@ -6,13 +6,13 @@ class Row extends React.Component {
         let name;
         switch (this.props.name) {
             case 'Player1':
-                name = <FormattedMessage id='player1Title' defaultMessage='Player1'/>;
+                name = <FormattedMessage id='player1Title' />;
                 break;
             case 'Player2':
-                name = <FormattedMessage id='player2Title' defaultMessage='Player2'/>;
+                name = <FormattedMessage id='player2Title' />;
                 break;
             case 'Draw game':
-                name = <FormattedMessage id='drawGame' defaultMessage='Draw Game'/>;
+                name = <FormattedMessage id='drawGame' />;
                 break;
             default: 
                 name = this.props.name;

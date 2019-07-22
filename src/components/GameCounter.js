@@ -7,7 +7,7 @@ class GameCounter extends React.Component {
         <div className='game-counter'>
             {this.props.state.gameNumber !== 0?
                 <div className='counter-text'>
-                    <FormattedMessage id='game' default='Game'/>{` ${this.props.state.gameNumber}`}
+                    <FormattedMessage id='game' />{` ${this.props.state.gameNumber}`}
                 </div> : null}
         </div>
         )

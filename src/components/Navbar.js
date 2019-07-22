@@ -21,7 +21,7 @@ class Navbar extends React.Component {
                         return (
                             <div key={item.id} onClick={() => {this.handleClick(item.id)}} className={item.className}>
                                 <Link to={item.linkTo}>
-                                    {item.id === 1? <FormattedMessage id='tab.game' defaultMessage='Game'/> : <FormattedMessage id='tab.scoreTable' defaultMessage='Score Table' /> }
+                                    {item.id === 1? <FormattedMessage id='tab.game' /> : <FormattedMessage id='tab.scoreTable' /> }
                                 </Link>
                             </div>
                         )

@@ -7,6 +7,7 @@ import {enterNameAC, buttonStartAC, submitNameAC, cellClickAC, clickModalAC} fro
 import GameCounter from './GameCounter';
 import Modal from 'react-awesome-modal';
 import { FormattedMessage } from 'react-intl';
+import config from '../configuration/config.json';
 
 class Game extends React.Component {
 
@@ -17,14 +18,14 @@ class Game extends React.Component {
     render() {
         let name;
         switch (this.props.state.winnerName) {
-            case 'Player1':
-                name = <FormattedMessage id='player1Title' default='Player1' />
+            case config.player1:
+                name = <FormattedMessage id='player1Title' />
                 break;
-            case 'Player2':
-                name = <FormattedMessage id='player2Title' default='Player2' />
+            case config.player2:
+                name = <FormattedMessage id='player2Title' />
                 break;
-            case 'It is a draw!':
-                name = <FormattedMessage id='drawGameMessage' default='Draw game!' />
+            case config.drawGame:
+                name = <FormattedMessage id='drawGameMessage' />
                 break;
             default:
                 name = this.props.state.winnerName
@@ -34,11 +35,11 @@ class Game extends React.Component {
             <div className='game'>
                 <Modal onClickAway={()=>this.closeModal()} visible={this.props.state.modalVisible} width='300' height='200' effect="fadeInUp">
                     <div>
-                        <div className='modal-title'><FormattedMessage id='modalTitle' default='Winner' /></div>
+                        <div className='modal-title'><FormattedMessage id='modalTitle' /></div>
                         <div className='modal-content'>
                             <div className='modal-text'>
                                 {name}
-                                {this.props.state.winnerName == 'It is a draw!'? null : <FormattedMessage id='wins' default="wins!"/>}
+                                {this.props.state.winnerName == config.drawGame? null : <FormattedMessage id='wins' />}
                             </div>
                             <button className='button-modal' onClick={() => this.closeModal()}>Ok</button>
                         </div>

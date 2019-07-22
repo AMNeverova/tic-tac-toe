@@ -8,6 +8,7 @@ import {
 } from "./actionTypes";
 
 import store from 'store';
+import config from '../configuration/config.json';
 
 const initialState = {
     "players": [{
@@ -15,14 +16,14 @@ const initialState = {
             "active": false,
             "name": "",
             "value": "",
-            "className": "player player1"
+            "classNames": ["player", "player1"]
         },
         {
             "id": 2,
             "active": false,
             "name": "",
             "value": "",
-            "className": "player player2"
+            "classNames": ["player", "player2"]
         }
     ],
     "cells": [{
@@ -89,11 +90,11 @@ let gameReducer = (state = initialState, action) => {
         stateCopy.players.map((item) => {
             if (item.id == 1) {
                 item.active = true;
-                item.className = item.className.slice(0, 14);
-                item.className += ' active';
+                item.classNames.splice(2, 2);
+                item.classNames.push('active');
             } else {
                 item.active = false;
-                item.className = item.className.slice(0, 14)
+                item.classNames.splice(2, 2)
             }
         })
 
@@ -173,10 +174,10 @@ let gameReducer = (state = initialState, action) => {
             stateCopy.players.map((item) => {
                 if (item.active) {
                     item.active = false;
-                    item.className = item.className.slice(0, 14)
+                    item.classNames.splice(2, 2)
                 } else {
                     item.active = true;
-                    item.className += " active"
+                    item.classNames.push('active');
                 }
             })
 
@@ -245,7 +246,7 @@ let gameReducer = (state = initialState, action) => {
                 }
             }
             if (stateCopy.clicks == 9 && !stateCopy.winnerName) {
-                stateCopy.winnerName = 'It is a draw!';
+                stateCopy.winnerName = config.drawGame;
                 stateCopy.modalVisible = true;
                 if (store.get('scoreTable')) {
                     let winnersArray = store.get('scoreTable')
@@ -255,7 +256,7 @@ let gameReducer = (state = initialState, action) => {
                     winnersArray.push('Draw game');
                     store.set('scoreTable', winnersArray)
                 } else {
-                    store.set('scoreTable', ['Draw game'])
+                    store.set('scoreTable', [config.drawGame])
                 }
             }
             if (stateCopy.winner) {
@@ -274,17 +275,17 @@ let gameReducer = (state = initialState, action) => {
                             store.set('scoreTable', [stateCopy.players[0].name])
                         }
                     } else {
-                        stateCopy.winnerName = 'Player1';
+                        stateCopy.winnerName = config.player1;
                         stateCopy.modalVisible = true;
                         if (store.get('scoreTable')) {
                             let winnersArray = store.get('scoreTable')
                             if (winnersArray.length >= 12) {
                                 winnersArray = winnersArray.slice(-11)
                             }
-                            winnersArray.push('Player1');
+                            winnersArray.push(config.player1);
                             store.set('scoreTable', winnersArray)
                         } else {
-                            store.set('scoreTable', ['Player1'])
+                            store.set('scoreTable', [config.player1])
                         }
                     }
                 } else {
@@ -302,7 +303,7 @@ let gameReducer = (state = initialState, action) => {
                             store.set('scoreTable', [stateCopy.players[1].name])
                         }
                     } else {
-                        stateCopy.winnerName = 'Player2';
+                        stateCopy.winnerName = config.player2;
                         stateCopy.modalVisible = true;
                         if (store.get('scoreTable')) {
                             let winnersArray = store.get('scoreTable')
@@ -312,7 +313,7 @@ let gameReducer = (state = initialState, action) => {
                             winnersArray.push('Player2');
                             store.set('scoreTable', winnersArray)
                         } else {
-                            store.set('scoreTable', ['Player2'])
+                            store.set('scoreTable', [config.player2])
                         }
                     }
                 }
