@@ -1,138 +1,124 @@
-let assert = require('chai').assert;
-let testCases = require('./testCases');
+const expect = require('chai').expect;
+const test = require('./testCases');
 
-let cellClickAC = (cellId) => {
-    return {
-        type: cellClickActionType,
-        cell: cellId
-    }
+let findWinner = function(field, clickPoint) {
+    let row = clickPoint[0];
+    let cell = clickPoint[1];
+    let result
+     switch (field[row][cell]) {
+        case field[row][cell+1]: 
+          switch (field[row][cell+1]) {
+            case field[row][cell+2]:
+              result = `winner is in row${row}, cells${cell}${cell+1}${cell+2}`
+            break;
+            case field[row][cell-1]:
+              result = `winner is in row${row}, cells${cell}${cell+1}${cell-1}`
+            break;
+          }
+        break;
+        case field[row][cell-1]:
+            switch (field[2][cell-1]) {
+              case field[2][cell-2]: 
+              result = `winner is in row${row}, cells${cell}${cell-1}${cell-2}`
+              break;
+            }
+        break;
+        case field[row-1][cell]:
+          switch (field[row-1][cell]) {
+            case field[row-2][cell]:
+            result = `winner is in rows${row}${row-1}${row-2}, cell${cell}`
+            break;
+            case  field[row+1][cell]:
+            result = `winner is in rows${row}${row-1}${row+1}, cell${cell}`
+          }
+         break;
+         case field[row+1][cell]:
+          switch (field[row+1][cell]) {
+            case field[row+2][cell]:
+              result = `winner is in rows${row}${row+1}${row+2}, cell${cell}`
+            break;
+          }
+         break;
+         case field[row-1][cell+1]:
+          switch (field[row-1][cell+1]) {
+            case field[row-2][cell+2]:
+              result = `winner is in rows${row}${row-1}${row-2}, cells${cell}${cell+1}${cell+2}`
+            break;
+            case field[row+1][cell-1]:
+              result = `winner is in rows${row}${row-1}${row+1}, cells${cell}${cell+1}${cell-1}`
+            break;
+          }
+        break;
+        case field[row+1][cell-1]:
+          switch(field[row+1][cell-1]) {
+            case field[row+2][cell-2]:
+              result = `winner is in rows${row}${row+1}${row+2}, cells${cell}${cell-1}${cell-2}`;
+              break;
+          }
+         break;
+         case field[row-1][cell-1]:
+          switch (field[row-1][cell-1]) {
+            case field[row-2][cell-2]:
+              result = `winner is in rows${row}${row-1}${row-2}, cells${cell}${cell-1}${cell-2}`;
+            break;
+            case field[row+1][cell+1]:
+              result = `winner is in rows${row}${row-1}${row+1}, cells${cell}${cell-1}${cell+1}`;
+            break;
+          }
+        break;
+        case field[row+1][cell+1]:
+          switch(field[row+1][cell+1]) {
+            case field[row+2][cell+2]:
+              result = `winner is in rows${row}${row+1}${row+2}, cells${cell}${cell+1}${cell+2}`;
+            break;
+          }
+        break;
+        default:
+                result = 'nobody wins';        
+      }
+    return result
 }
-const cellClickActionType = 'CELL-CLICK';
 
-let gameReducer = (state, action) => {
-    if (action.type === cellClickActionType) {
-        if (state.cells[0].content && state.cells[0].content == state.cells[1].content && state.cells[0].content == state.cells[2].content) {
-            if (state.cells[0].content == 'cross') {
-                return `${state.players[0].name} wins`
-            } else {
-                return `${state.players[1].name} wins`
-            }
-        }
-        if (state.cells[3].content && state.cells[3].content == state.cells[4].content && state.cells[3].content == state.cells[5].content) {
-            if (state.cells[3].content == 'cross') {
-                return `${state.players[0].name} wins`
-            } else {
-                return `${state.players[1].name} wins`
-            }
-        }
-        if (state.cells[6].content && state.cells[6].content == state.cells[7].content && state.cells[6].content == state.cells[8].content) {
-            if (state.cells[6].content == 'cross') {
-                return `${state.players[0].name} wins`
-            } else {
-                return `${state.players[1].name} wins`
-            }
-        }
-        if (state.cells[0].content && state.cells[0].content == state.cells[3].content && state.cells[0].content == state.cells[6].content) {
-            if (state.cells[0].content == 'cross') {
-                return `${state.players[0].name} wins`
-            } else {
-                return `${state.players[1].name} wins`
-            }
-        }
-        if (state.cells[1].content && state.cells[1].content == state.cells[4].content && state.cells[1].content == state.cells[7].content) {
-            if (state.cells[1].content == 'cross') {
-                return `${state.players[0].name} wins`
-            } else {
-                return `${state.players[1].name} wins`
-            }
-        }
-        if (state.cells[2].content && state.cells[2].content == state.cells[5].content && state.cells[2].content == state.cells[8].content) {
-            if (state.cells[2].content == 'cross') {
-                return `${state.players[0].name} wins`
-            } else {
-                return `${state.players[1].name} wins`
-            }
-        }
-        if (state.cells[0].content && state.cells[0].content == state.cells[4].content && state.cells[0].content == state.cells[8].content) {
-            if (state.cells[0].content == 'cross') {
-                return `${state.players[0].name} wins`
-            } else {
-                return `${state.players[1].name} wins`
-            }
-        }
-        if (state.cells[2].content && state.cells[2].content == state.cells[4].content && state.cells[2].content == state.cells[6].content) {
-            if (state.cells[2].content == 'cross') {
-                return `${state.players[0].name} wins`
-            } else {
-                return `${state.players[1].name} wins`
-            }
-        }
-        if (state.clicks == 9) {
-            return 'Its a draw'
-        }
-        return 'Game continues'
-    }
-}
+describe("find winner", function() {
+    it("should find winner in 1 row, cells210", function () {
+        let result = findWinner(test.cross1_123, [1, 2])
+        expect(result).to.equal('winner is in row1, cells210');
+    });
+    it("should find winner in 2 row, cells210", function () {
+        expect(findWinner(test.cross2_123, [2, 2])).to.equal('winner is in row2, cells210');
+    });
+    it("should find winner in 3 row, cells210", function () {
+        expect(findWinner(test.cross3_123, [3, 2])).to.equal('winner is in row3, cells210');
+    });
+    it("should find winner in 1 row, cells210", function () {
+        expect(findWinner(test.zero1_123, [1, 2])).to.equal('winner is in row1, cells210');
+    });
+    it("should find winner in rows123, cell0", function () {
+        expect(findWinner(test.cross123_1, [1, 0])).to.equal('winner is in rows123, cell0');
+    });
+    it("should find winner in rows213, cell0", function () {
+        expect(findWinner(test.cross123_1, [2, 0])).to.equal('winner is in rows213, cell0');
+    });
+    it("should find winner in rows321, cell0", function () {
+        expect(findWinner(test.cross123_1, [3, 0])).to.equal('winner is in rows321, cell0');
+    });
+    it("should find winner in rows321, cell1", function () {
+        expect(findWinner(test.cross123_2, [3, 1])).to.equal('winner is in rows321, cell1');
+    });
+    it("should find winner in rows213, cell1", function () {
+        expect(findWinner(test.cross123_2, [2, 1])).to.equal('winner is in rows213, cell1');
+    });
+    it("should find winner in rows213, cell2", function () {
+        expect(findWinner(test.cross123_3, [2, 2])).to.equal('winner is in rows213, cell2');
+    });
+    it("should find winner in rows213, cells102", function () {
+        expect(findWinner(test.cross123_123, [2, 1])).to.equal('winner is in rows213, cells102');
+    });
+    it("should find winner in rows123, cells012", function () {
+        expect(findWinner(test.cross123_123, [1, 0])).to.equal('winner is in rows123, cells012');
+    });
+    it("should find winner in rows123, cells210", function () {
+        expect(findWinner(test.cross123_321, [1, 2])).to.equal('winner is in rows123, cells210');
+    });
 
-describe('detectWinner', function () {
-    it('should return Masha wins', function () {
-        assert.equal(gameReducer(testCases.cross123, cellClickAC(5)), 'Masha wins')
-    })
-    it('should return Dima wins', function () {
-        assert.equal(gameReducer(testCases.zero123, cellClickAC(5)), 'Dima wins')
-    })
-    it('should return Masha wins', function () {
-        assert.equal(gameReducer(testCases.cross456, cellClickAC(5)), 'Masha wins')
-    })
-    it('should return Dima wins', function () {
-        assert.equal(gameReducer(testCases.zero456, cellClickAC(5)), 'Dima wins')
-    })
-    it('should return Masha wins', function () {
-        assert.equal(gameReducer(testCases.cross789, cellClickAC(5)), 'Masha wins')
-    })
-    it('should return Dima wins', function () {
-        assert.equal(gameReducer(testCases.zero789, cellClickAC(5)), 'Dima wins')
-    })
-    it('should return Sveta wins', function () {
-        assert.equal(gameReducer(testCases.cross147, cellClickAC(5)), 'Sveta wins')
-    })
-    it('should return Vova wins', function () {
-        assert.equal(gameReducer(testCases.zero147, cellClickAC(5)), 'Vova wins')
-    })
-    it('should return Sveta wins', function () {
-        assert.equal(gameReducer(testCases.cross258, cellClickAC(5)), 'Sveta wins')
-    })
-    it('should return Vova wins', function () {
-        assert.equal(gameReducer(testCases.zero258, cellClickAC(5)), 'Vova wins')
-    })
-    it('should return Sveta wins', function () {
-        assert.equal(gameReducer(testCases.cross369, cellClickAC(5)), 'Sveta wins')
-    })
-    it('should return Vova wins', function () {
-        assert.equal(gameReducer(testCases.zero369, cellClickAC(5)), 'Vova wins')
-    })
-    it('should return Zhenya wins', function () {
-        assert.equal(gameReducer(testCases.cross159, cellClickAC(5)), 'Zhenya wins')
-    })
-    it('should return Igor wins', function () {
-        assert.equal(gameReducer(testCases.zero159, cellClickAC(5)), 'Igor wins')
-    })
-    it('should return Zhenya wins', function () {
-        assert.equal(gameReducer(testCases.cross357, cellClickAC(5)), 'Zhenya wins')
-    })
-    it('should return Igor wins', function () {
-        assert.equal(gameReducer(testCases.zero357, cellClickAC(5)), 'Igor wins')
-    })   
-     it('should return "Its a draw"', function () {
-        assert.equal(gameReducer(testCases.draw, cellClickAC(9)), 'Its a draw')
-    })
-    it('should return Game continues', function () {
-        assert.equal(gameReducer(testCases.cross12, cellClickAC(9)), 'Game continues')
-    })
-    it('should return Game continues', function () {
-        assert.equal(gameReducer(testCases.zero139, cellClickAC(9)), 'Game continues')
-    })
-    it('should return Sasha wins', function () {
-        assert.equal(gameReducer(testCases.zero123full, cellClickAC(9)), 'Sasha wins')
-    })
-})
+  });

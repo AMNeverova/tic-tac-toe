@@ -1,7 +1,8 @@
 /* eslint no-unused-vars: 0 */
 import React from 'react';
-import cross from '../img/cross.png';
-import zero from '../img/zero.png';
+import crossImg from '../img/cross.png';
+import zeroImg from '../img/zero.png';
+import config from '../configuration/config.json';
 
 class Cell extends React.Component {
     constructor() {
@@ -10,13 +11,13 @@ class Cell extends React.Component {
     }
 
     handleClick() {
-        this.props.cellClickAC(this.props.state.id)
+        this.props.cellClickAC(this.props.row, this.props.id)
     }
 
     render() {
         return (
-            <div onClick={this.handleClick} className={this.props.state.className}>
-                {this.props.state.content? <img className='picture' src={this.props.state.content == 'cross'? cross : zero} /> : null} 
+            <div onClick={this.handleClick} className={this.props.className}>
+                {this.props.content? <img className='picture' src={this.props.content == config.cross? crossImg : zeroImg} /> : null} 
             </div>
         )
     }

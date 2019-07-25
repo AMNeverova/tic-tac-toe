@@ -1,9 +1,9 @@
-import { cellClickActionType, buttonStartActionType, enterNameActionType, submitNameActionType, changeToEnActionType, changeToRuActionType, clickTabActionType, clickModalActionType } from "./actionTypes";
+import { cellClickActionType, buttonStartActionType, enterNameActionType, submitNameActionType, changeToEnActionType, changeToRuActionType, clickTabActionType, clickModalActionType, changeFieldSizeActionType } from "./actionTypes";
 
-export let cellClickAC = (cellId) => {
+export let cellClickAC = (row, cellId) => {
     return {
         type: cellClickActionType,
-        cell: cellId
+        cell: [row, cellId]
     }
 }
 
@@ -34,3 +34,9 @@ export const clickTabAC = (id) => {
 }
 
 export const clickModalAC = () => ({type: clickModalActionType})
+export const changeFieldSizeAC = (field) => {
+    return {
+        type: changeFieldSizeActionType,
+        field
+    }
+}

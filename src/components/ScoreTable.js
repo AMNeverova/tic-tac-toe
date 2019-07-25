@@ -1,24 +1,32 @@
 import React from 'react';
-import Row from './Row';
 import store from 'store';
+import {connect} from 'react-redux';
 
 class ScoreTable extends React.Component {
     render() {
+        console.log(this.props.state)
         let winnersArray = store.get('scoreTable')
         let RowComponents = []
         if (winnersArray) {
             for (let i = 0; i < winnersArray.length; i++ ) {
                 RowComponents.push(
-                    <Row name={winnersArray[i]} key={i} index={i + 1} />
+                    <tr key={i}><td>{winnersArray[i][0]}</td><td>{winnersArray[i][1]}</td></tr>
                 )
             }
         }
         return (
             <div className='score-table'>
-                {RowComponents}
+                <table col='2'>
+                    <tbody>
+                        <tr><th>Номер игры</th><th>Победитель</th></tr>
+                        {RowComponents}
+                    </tbody>
+                </table>
             </div>
         )
     }
 }
 
-export default ScoreTable;
+const mapStateToProps = state => ({state: state.game.gameNumber})
+
+export default connect(mapStateToProps)(ScoreTable);

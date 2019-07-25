@@ -6,3 +6,4 @@ export const changeToEnActionType = 'CHANGE-TO-ENG';
 export const changeToRuActionType = 'CHANGE-TO-RU';
 export const clickTabActionType = 'TAB-CLICK';
 export const clickModalActionType = 'CLICK-MODAL';
+export const changeFieldSizeActionType = 'CHANGE-FIELD-SIZE';

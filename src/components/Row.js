@@ -19,9 +19,7 @@ class Row extends React.Component {
         }
 
         return (
-            <div className='row'>
-                {`${this.props.index}. `}{name}
-            </div>
+                {name}
         )
     }
 }

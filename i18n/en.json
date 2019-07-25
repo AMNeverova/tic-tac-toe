@@ -10,5 +10,8 @@
     "wins": " wins!",
     "modalTitle": "Winner",
     "game": "Game",
-    "warning": "Please, press Start"
+    "warning": "Please, press Start",
+    "changeNameButton": "Change Name",
+    "startAgainButton": "Start Again",
+    "selectText": "Choose field size"
 }

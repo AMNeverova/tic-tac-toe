@@ -4,5 +4,10 @@
     "modalWidth": 300,
     "drawGame": "Draw Game",
     "player1": "Player1",
-    "player2": "Player2"
+    "player2": "Player2",
+    "cross": "x",
+    "zero": "o",
+    "gamefield3": "gamefield3",
+    "gamefield5": "gamefield5",
+    "gamefield10": "gamefield10"
 }
