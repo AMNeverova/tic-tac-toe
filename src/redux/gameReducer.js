@@ -97,7 +97,7 @@ let gameReducer = (state = initialState, action) => {
                 }
             }
         }
-        if (!stateCopy.winnerName && stateCopy.clicks != 0) {
+        if (!stateCopy.winnerName && stateCopy.gameNumber != 0) {
             if (store.get('scoreTable')) {
                 let winnersArray = store.get('scoreTable')
                 if (winnersArray.length >= 12) {
@@ -115,8 +115,7 @@ let gameReducer = (state = initialState, action) => {
         stateCopy.gameNumber += 1;
         if (stateCopy.winnerName) {
             stateCopy.winnerName = '';
-        } 
-
+        }
 
         if (stateCopy.clicks != 0) {
             stateCopy.clicks = 0;
@@ -196,7 +195,6 @@ let gameReducer = (state = initialState, action) => {
                     }
                 })
             }
-            console.log(action.cell)
             stateCopy.winner = findWinner(stateCopy[state.field], action.cell)
 
             if (stateCopy.winner && stateCopy.winner.winnerSymbol == config.cross) {
@@ -216,7 +214,10 @@ let gameReducer = (state = initialState, action) => {
 
             }
 
-            console.log(stateCopy.winnerName)
+            if (stateCopy.winner && stateCopy.winner == config.drawGame) {
+                stateCopy.winnerName = config.drawGame;
+            }
+            console.log(stateCopy.winner)
 
             if (stateCopy.winner) {
                 stateCopy.pressed = false;
@@ -252,6 +253,49 @@ let gameReducer = (state = initialState, action) => {
         let stateCopy = {
             ...state
         };
+        stateCopy.players = state.players.map((item) => {
+            return {
+                ...item
+            }
+        })
+        stateCopy.players.map((item) => {
+            if (item.id == 1) {
+                item.active = true;
+                item.classNames.splice(2, 2);
+                item.classNames.push('active');
+            } else {
+                item.active = false;
+                item.classNames.splice(2, 2)
+            }
+        })
+
+        stateCopy[state.field] = state[state.field].map((item) => [...item]);
+        for (let i = 1; i <= stateCopy[state.field].length - 2; i++) {
+            for (let j = 0; j <= stateCopy[state.field].length - 1; j++) {
+                if (stateCopy[state.field][i][j]) {
+                    stateCopy[state.field][i][j] = ''
+                }
+            }
+        }
+        if (!stateCopy.winnerName && stateCopy.gameNumber != 0) {
+            if (store.get('scoreTable')) {
+                let winnersArray = store.get('scoreTable')
+                if (winnersArray.length >= 12) {
+                    winnersArray = winnersArray.slice(-11)
+                }
+                winnersArray.push([stateCopy.gameNumber, '-']);
+                store.set('scoreTable', winnersArray)
+            } else {
+                store.set('scoreTable', [stateCopy.gameNumber, '-'])
+            }
+
+        }
+        stateCopy.clicks = 0;
+        if (stateCopy.gameNumber !=0) {
+            stateCopy.gameNumber += 1;
+        }
+        stateCopy.winner = '';
+        stateCopy.winnerName = '';
         stateCopy.gamefieldClassName = action.field;
         stateCopy.field = action.field;
         return stateCopy

@@ -17,10 +17,8 @@ class Game extends React.Component {
     closeModal() {
         this.props.clickModalAC()
     }
-
     render() {
         let name;
-        console.log(this.props.state.winnerName)
         switch (this.props.state.winnerName) {
             case config.player1:
                 name = <FormattedMessage id='player1Title' />
@@ -34,7 +32,7 @@ class Game extends React.Component {
             default:
                 name = this.props.state.winnerName
         }
-
+        
         return (
             <div className='game'>
                 <Modal onClickAway={()=>this.closeModal()} visible={this.props.state.modalVisible} width='300' height='200' effect="fadeInUp">

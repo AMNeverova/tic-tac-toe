@@ -20,16 +20,21 @@ html {
     .score-table {
         margin-top: 5rem;
         background-color: $white;
-        min-height: 25rem;
+        min-height: 23.5rem;
         min-width: 30rem;
-        border-radius: 15%;
+        border-radius: 5%;
         border: 1rem solid $purple-main;
         height: auto;
-        .row {
-            font-size: 1.5rem;
-            padding-left: 10rem;
-            font-family: $font-family;
+        .table {
+            color: #552f7d;
+            font-family: Comfortaa;
+            width: 100%;
+            border-collapse: collapse;
+            .column1 {
+                text-align: center;
+            }
         }
+
     }
 
     .navbar {
@@ -95,7 +100,7 @@ html {
                 margin: 1rem 0 0 14rem;
                 padding-left: 0.4rem;
                 padding-top: 0.4rem;
-                width: 8rem;
+                width: 9rem;
                 font-size: 2rem;
                 background-color: $counter-background;
                 border-radius: 0.4rem;
@@ -205,7 +210,7 @@ html {
             width: 30rem;
             height: 30rem;
             background-color: $white;
-            border-radius: 15%;
+            border-radius: 5%;
             margin-top: 2rem;
             border: 1rem solid $purple-main;
             display: flex;
@@ -219,32 +224,25 @@ html {
                     height: 9rem;
                     margin-top: 0.5rem;
                 }
+                .picture:before {
+                    content: '-'
+                }
             }
-            .row1, .row2, .row3 {
-                display: flex;
-                flex-basis: 100%;
-                height: 10rem;
-                box-sizing: border-box;
+
+            div:nth-child(n):not(:nth-child(3n+1)) {
+                border-left: $border-cell-wide;
             }
-            .cell1, .cell2, .cell3, .cell4, .cell5, .cell6 {
-                border-bottom: $border-cell;
+            div:nth-child(n):nth-child(-n+6) {
+                border-bottom: $border-cell-wide;
             }
-            .cell4, .cell5, .cell6, .cell7, .cell8, .cell9 {
-                border-top: $border-cell;
-            }
-            .cell1, .cell2, .cell4, .cell5, .cell7, .cell8 {
-                border-right: $border-cell;
-            }
-            .cell2, .cell3, .cell5, .cell6, .cell8, .cell9 {
-                border-left: $border-cell;
-            }
+
         }
 
         .gamefield5 {
             width: 30rem;
             height: 30rem;
             background-color: $white;
-            border-radius: 15%;
+            border-radius: 5%;
             margin-top: 2rem;
             border: 1rem solid $purple-main;
             display: flex;
@@ -260,37 +258,12 @@ html {
                     margin-left: 0.25rem;
                 }
             }
-
-
-            .row {
-                display: flex;
-                flex-basis: 100%;
-                height: 6rem;
-                box-sizing: border-box;
+            div:nth-child(n):not(:nth-child(5n+1)) {
+                border-left: $border-cell-thin;
             }
-
-            .row1, .row2, .row3, .row4 {
-                border-bottom: 0.25rem solid #e3e1e1;
+            div:nth-child(n):nth-child(-n+20) {
+                border-bottom: $border-cell-thin;
             }
-
-            .row5, .row4, .row3, .row2 {
-                border-top: 0.25rem solid #e3e1e1;
-            }
-
-            .cell {
-                flex-basis: 20%;
-                border-right: 0.25rem solid #e3e1e1;
-                border-left: 0.25rem solid #e3e1e1;
-            }
-
-            .cell1, .cell6, .cell11, .cell16, .cell21 {
-                border-left: none;
-            }
-
-            .cell5, .cell10, .cell15, .cell20, .cell25 {
-                border-right: none;
-            }
-
         }
 
         .gamefield10 {
@@ -313,62 +286,18 @@ html {
                 }
             }
             div:nth-child(n):not(:nth-child(10n+1)) {
-                border-left: $border-cell;
+                border-left: $border-cell-thin;
             }
             div:nth-child(n):nth-child(-n+90) {
-                border-bottom: $border-cell;
+                border-bottom: $border-cell-thin;
             }
-        }
-        .line1::before {
-            @include line;
-            width: 30rem;
-            height: 1rem;        
-            top: 15rem;
-        }
-        .line2::before {
-            @include line;
-            width: 30rem;
-            height: 1rem;        
-            top: 25rem;
-        }
-        .line3::before {
-            @include line;
-            width: 30rem;
-            height: 1rem;        
-            top: 35rem;
-        }
-        .line4::before {
-            @include line;
-            top: 10.1rem;
-            left: 38%;
-        }
-        .line5::before {
-            @include line;
-            top: 10.1rem;
-            left: 50%;
-        }
-        .line6::before {
-            @include line;
-            top: 10.1rem;
-            left: 61%;
-        }
-        .line7::before {
-            @include line;
-            height: 38rem;
-            top: 6rem;
-            left: 49%;
-            @include rotate-line7;
-        }
-        .line8::before {
-            @include line;
-            height: 38rem;
-            top: 6rem;
-            left: 50%;
-            @include rotate-line8;
         }
         .best-players {
             flex-basis: 60%;
         }
+    }
+    .winner {
+        background-color: #d9f9fc;
     }
 }
 
