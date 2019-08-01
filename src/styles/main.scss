@@ -16,7 +16,6 @@ html {
 .container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
     .score-table {
         margin-top: 5rem;
         background-color: $white;
@@ -25,6 +24,7 @@ html {
         border-radius: 5%;
         border: 1rem solid $purple-main;
         height: auto;
+        margin-left: calc(50% - 15rem);
         .table {
             color: #552f7d;
             font-family: Comfortaa;
@@ -93,11 +93,12 @@ html {
         flex-wrap: wrap;
         flex-basis: 100%;
         justify-content: space-around;
+        align-items: center;
         .game-counter {
-            flex-basis: 33%;
+            flex-basis: 14%;
             .counter-text {
                 font-family: $font-family;
-                margin: 1rem 0 0 14rem;
+                margin: 1rem 0 0 2rem;
                 padding-left: 0.4rem;
                 padding-top: 0.4rem;
                 width: 9rem;
@@ -111,190 +112,114 @@ html {
             }
         }
 
-        .select-field {
-            flex-basis: 34%;
-            padding-top: 1rem;
-            .select-text {
-                font-family: Comfortaa;
-                color: #552f7d;
-                padding-bottom: 0.2rem;
-            }
-            .select-options {
-                height: 2rem;
-                border-radius: 10%;
-                color: #552f7d;
-                font-size: 1rem;
-                border: 0.2rem solid;
-                font-family: Comfortaa;
-            }
-        }
-
-        .start {
-            height: 4.5rem;
-            flex-basis: 33%;
-            .warning {
-                flex-basis: 100%;
-                color: $red;
-                padding-left: 9.1rem;
-                padding-top: 0.5rem;
-                font-weight: 500;
-                font-family: $font-family;
-            }
-            .button-start {
-                margin-left: 11rem;
-                margin-top: 1rem;
-                height: 2rem;
-                width: 5rem;
-                color: $white;
-                background: $purple-main;
-                font-family: $font-family;
-                border-radius: 10%;
-                border: none;
-                cursor: pointer;
-            }
-        }
-
-        .player {
-            background-color: $counter-background;
-            border-radius: 5%;
-            border: 0.2rem solid $purple-main;
-            margin-top: 7rem;
-            flex-basis: 19%;
+        .player-line{
             display: flex;
-            flex-wrap: wrap;
-            color: $purple-main;
-            font-size: 1.5rem;
-            height: 10rem;
+            flex-basis: 100%;
             justify-content: center;
-            .player-title {
-                flex-basis: 60%;
-                font-family: $font-family;
-                margin-bottom: 0;
-            }
-            .player-name {
-                flex-basis: 60%;
-                font-family: $font-family;
-            }
-            .input-player-name {
-                height: 2rem;
-                width: 10rem;
-                outline: 3px solid $purple-main;
-                padding-left: 0.5rem;
-                margin-left: 1rem;
-            }
-            .button {
-                width: 3rem;
-                height: 2.6rem;
-                font-family: $font-family;
-                margin-left: 0.2rem;
-                background-color: $purple-main;
-                color: $white;
-                border: none;
-                border-radius: 10%;
-                cursor: pointer;
-            }
-            .player-input-name {
-                flex-basis: 100%;
-            }
-            .button-change-name {
-                width: 6rem;
-                margin-left: calc(50% - 3rem);
-                cursor: pointer;
-            }
-    }
-    .player.active {
-        box-shadow: $shadow-player;
-    }
-
-        .gamefield3 {
-            width: 30rem;
-            height: 30rem;
-            background-color: $white;
-            border-radius: 5%;
-            margin-top: 2rem;
-            border: 1rem solid $purple-main;
-            display: flex;
-            flex-wrap: wrap;
-            .cell {
-                width: 10rem;
-                height: 10rem;
-                box-sizing: border-box;
-                .picture {
-                    width: 10rem;
-                    height: 9rem;
-                    margin-top: 0.5rem;
+            .select-field {
+                flex-basis: 17%;
+                padding-top: 1rem;
+                .select-text {
+                    font-family: Comfortaa;
+                    color: #552f7d;
+                    padding-bottom: 0.2rem;
                 }
-                .picture:before {
-                    content: '-'
+                .select-options {
+                    margin-left: 3.5rem;
+                    height: 2rem;
+                    border-radius: 10%;
+                    color: #552f7d;
+                    font-size: 1rem;
+                    border: 0.2rem solid;
+                    font-family: Comfortaa;
                 }
             }
-
-            div:nth-child(n):not(:nth-child(3n+1)) {
-                border-left: $border-cell-wide;
-            }
-            div:nth-child(n):nth-child(-n+6) {
-                border-bottom: $border-cell-wide;
-            }
-
-        }
-
-        .gamefield5 {
-            width: 30rem;
-            height: 30rem;
-            background-color: $white;
-            border-radius: 5%;
-            margin-top: 2rem;
-            border: 1rem solid $purple-main;
-            display: flex;
-            flex-wrap: wrap;
-            .cell {
-                width: 6rem;
-                height: 6rem;
-                box-sizing: border-box;
-                .picture {
+    
+            .start {
+                height: 4.5rem;
+                flex-basis: 15%;
+                .warning {
+                    flex-basis: 100%;
+                    color: $red;
+                    padding-top: 0.5rem;
+                    font-weight: 500;
+                    font-family: $font-family;
+                    text-align: center;
+                }
+                .button-start {
+                    margin-top: 1rem;
+                    margin-left: calc(50% - 2.5rem);
+                    height: 2rem;
                     width: 5rem;
-                    height: 5rem;
-                    margin-top: 0.5rem;
-                    margin-left: 0.25rem;
+                    color: $white;
+                    background: $purple-main;
+                    font-family: $font-family;
+                    border-radius: 10%;
+                    border: none;
+                    cursor: pointer;
                 }
             }
-            div:nth-child(n):not(:nth-child(5n+1)) {
-                border-left: $border-cell-thin;
-            }
-            div:nth-child(n):nth-child(-n+20) {
-                border-bottom: $border-cell-thin;
-            }
+    
+            .player {
+                background-color: $counter-background;
+                border-radius: 5%;
+                border: 0.2rem solid $purple-main;
+                margin-top: 2rem;
+                flex-basis: 19%;
+                display: flex;
+                flex-wrap: wrap;
+                color: $purple-main;
+                font-size: 1.5rem;
+                height: 10rem;
+                justify-content: center;
+                .player-title {
+                    flex-basis: 60%;
+                    font-family: $font-family;
+                    margin-bottom: 0;
+                }
+                .player-name {
+                    flex-basis: 60%;
+                    font-family: $font-family;
+                }
+                .input-player-name {
+                    height: 2rem;
+                    width: 10rem;
+                    outline: 3px solid $purple-main;
+                    padding-left: 0.5rem;
+                    margin-left: 1rem;
+                }
+                .button {
+                    width: 3rem;
+                    height: 2.6rem;
+                    font-family: $font-family;
+                    margin-left: 0.2rem;
+                    background-color: $purple-main;
+                    color: $white;
+                    border: none;
+                    border-radius: 10%;
+                    cursor: pointer;
+                }
+                .player-input-name {
+                    flex-basis: 100%;
+                }
+                .button-change-name {
+                    width: 6rem;
+                    margin-left: calc(50% - 3rem);
+                    cursor: pointer;
+                }
+        }
+        .player.active {
+            box-shadow: $shadow-player;
         }
 
-        .gamefield10 {
-            width: 40rem;
-            height: 40rem;
-            background-color: $white;
-            border-radius: 5%;
-            margin-top: 2rem;
-            border: 1rem solid $purple-main;
-            display: flex;
-            flex-wrap: wrap;
-            .cell {
-                width: 4rem;
-                height: 4rem;
-                box-sizing: border-box;
-                .picture {
-                    width: 3.5rem;
-                    height: 3.5rem;
-                    margin-top: 0.2rem;
-                }
-            }
-            div:nth-child(n):not(:nth-child(10n+1)) {
-                border-left: $border-cell-thin;
-            }
-            div:nth-child(n):nth-child(-n+90) {
-                border-bottom: $border-cell-thin;
-            }
         }
-        .best-players {
-            flex-basis: 60%;
-        }
+
+
+   
+
+        // .best-players {
+        //     flex-basis: 60%;
+        // }
     }
     .winner {
         background-color: #d9f9fc;

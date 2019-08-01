@@ -13,5 +13,8 @@
     "warning": "Нажмите Начать",
     "changeNameButton": "Изменить Имя",
     "startAgainButton": "Начать заново",
-    "selectText": "Выберите размер поля"
+    "selectText": "Выберите размер поля",
+    "gameNumber": "Номер Игры",
+    "table-winner": "Победитель"
+
 }

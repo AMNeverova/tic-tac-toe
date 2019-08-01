@@ -13,5 +13,7 @@
     "warning": "Please, press Start",
     "changeNameButton": "Change Name",
     "startAgainButton": "Start Again",
-    "selectText": "Choose field size"
+    "selectText": "Choose field size",
+    "gameNumber": "Game Number",
+    "table-winner": "Winner"
 }

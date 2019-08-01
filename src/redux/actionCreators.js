@@ -37,6 +37,5 @@ export const clickModalAC = () => ({type: clickModalActionType})
 export const changeFieldSizeAC = (field) => {
     return {
         type: changeFieldSizeActionType,
-        field
-    }
+        field    }
 }

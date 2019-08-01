@@ -46,3 +46,84 @@ $font-family: 'Comfortaa';
     content: "";
     background-color: $gamefield-line;
 }
+
+/* gamefield attributes */
+.game {
+    @for $i from 3 through 9 {
+        .gamefield#{$i} {
+            width: 30rem;
+            height: 30rem;
+            .cell {
+                width: (30rem/#{$i});
+                height: (30rem/#{$i});
+                .picture {
+                    width: (28rem/#{$i});
+                    height: (28rem/#{$i});
+                }
+            }
+            div:nth-child(n):not(:nth-child(#{$i}n+1)) {
+                border-left: $border-cell-wide;
+            }
+            div:nth-child(n):nth-child(-n+#{$i * $i - $i}) {
+                border-bottom: $border-cell-wide;
+            }
+        }
+    }
+    
+    @for $i from 10 through 20 {
+        .gamefield#{$i} {
+            width: 40rem;
+            height: 40rem;
+            .cell {
+                width: (40rem/#{$i});
+                height: (40rem/#{$i});
+                .picture {
+                    width: (35rem/#{$i});
+                    height: (35rem/#{$i});
+                }
+            }
+            div:nth-child(n):not(:nth-child(#{$i}n+1)) {
+                border-left: $border-cell-thin;
+            }
+            div:nth-child(n):nth-child(-n+#{$i * $i - $i}) {
+                border-bottom: $border-cell-thin;
+            }
+        }
+    }
+    
+    @for $i from 21 through 100 {
+        .gamefield#{$i} {
+            border-radius: 2%;
+            width: ($i * 2rem);
+            height: ($i * 2rem);
+            .cell {
+                width: 2rem;
+                height: 2rem;
+                .picture {
+                    width: 1.8rem;
+                    height: 1.8rem;
+                }
+            }
+            div:nth-child(n):not(:nth-child(#{$i}n+1)) {
+                border-left: $border-cell-thin;
+            }
+            div:nth-child(n):nth-child(-n+#{$i * $i - $i}) {
+                border-bottom: $border-cell-thin;
+            }
+        }
+    }
+
+}
+
+div[class^=gamefield] {
+    background-color: $white;
+    border-radius: 5%;
+    margin-top: 2rem;
+    border: 1rem solid $purple-main;
+    display: flex;
+    flex-wrap: wrap;
+        .cell {
+            box-sizing: border-box;
+        }
+   }
+

@@ -10,7 +10,7 @@ import {
 
 import store from 'store';
 import config from '../configuration/config.json';
-import findWinner from "../configuration/findWinner";
+import findWinner from "../redux/findWinner";
 
 const initialState = {
     "players": [{
@@ -64,8 +64,10 @@ const initialState = {
     "winnerName": '',
     "gameNumber": 0,
     "modalVisible": false,
-    "gamefieldClassName": "gamefield3",
-    "field": "gamefield3"
+    "field": "gamefield3",
+    "winningCombination": 3,
+    "currentGamefield": [['', '', ''], ['', '', ''], ['', '', '']],
+    "fieldSize": 3
 }
 
 let gameReducer = (state = initialState, action) => {
@@ -89,19 +91,19 @@ let gameReducer = (state = initialState, action) => {
             }
         })
 
-        stateCopy[state.field] = state[state.field].map((item) => [...item]);
-        for (let i = 1; i <= stateCopy[state.field].length - 2; i++) {
-            for (let j = 0; j <= stateCopy[state.field].length - 1; j++) {
-                if (stateCopy[state.field][i][j]) {
-                    stateCopy[state.field][i][j] = ''
+        stateCopy.currentGamefield = state.currentGamefield.map((item) => [...item]);
+        for (let i = 0; i <= stateCopy.currentGamefield.length - 1; i++) {
+            for (let j = 0; j <= stateCopy.currentGamefield.length - 1; j++) {
+                if (stateCopy.currentGamefield[i][j]) {
+                    stateCopy.currentGamefield[i][j] = ''
                 }
             }
         }
         if (!stateCopy.winnerName && stateCopy.gameNumber != 0) {
             if (store.get('scoreTable')) {
                 let winnersArray = store.get('scoreTable')
-                if (winnersArray.length >= 12) {
-                    winnersArray = winnersArray.slice(-11)
+                if (winnersArray.length >= config.rowsInScoreTable) {
+                    winnersArray = winnersArray.slice(-config.rowsInScoreTable+1)
                 }
                 winnersArray.push([stateCopy.gameNumber, '-']);
                 store.set('scoreTable', winnersArray)
@@ -110,7 +112,7 @@ let gameReducer = (state = initialState, action) => {
             }
 
         }
-        stateCopy.winner = ''
+        stateCopy.winner = '';
         stateCopy.pressed = true;
         stateCopy.gameNumber += 1;
         if (stateCopy.winnerName) {
@@ -121,10 +123,6 @@ let gameReducer = (state = initialState, action) => {
             stateCopy.clicks = 0;
         }
 
-        let reg = new RegExp('line\\d');
-        if (stateCopy.gamefieldClassName.match(reg)) {
-            stateCopy.gamefieldClassName = `gamefield${stateCopy.field} `
-        }
         return stateCopy
     }
 
@@ -174,16 +172,16 @@ let gameReducer = (state = initialState, action) => {
                 ...item
             }
         })
-        stateCopy[state.field] = state[state.field].map((item) => [...item])
+        stateCopy.currentGamefield = state.currentGamefield.map((item) => [...item])
 
         if (state.pressed && !state.winnerName) {
-            if (!stateCopy[state.field][action.cell[0]][action.cell[1]]) {
+            if (!stateCopy.currentGamefield[action.cell[0]][action.cell[1]]) {
                 stateCopy.clicks += 1;
 
                 if (stateCopy.players[0].active) {
-                    stateCopy[state.field][action.cell[0]][action.cell[1]] = config.cross
+                    stateCopy.currentGamefield[action.cell[0]][action.cell[1]] = config.cross
                 } else {
-                    stateCopy[state.field][action.cell[0]][action.cell[1]] = config.zero
+                    stateCopy.currentGamefield[action.cell[0]][action.cell[1]] = config.zero
                 }
                 stateCopy.players.map((item) => {
                     if (item.active) {
@@ -195,9 +193,9 @@ let gameReducer = (state = initialState, action) => {
                     }
                 })
             }
-            stateCopy.winner = findWinner(stateCopy[state.field], action.cell)
+            stateCopy.winner = findWinner(stateCopy.currentGamefield, stateCopy.winningCombination)
 
-            if (stateCopy.winner && stateCopy.winner.winnerSymbol == config.cross) {
+            if (stateCopy.winner.winnerDetected && stateCopy.winner.winnerSymbol == config.cross) {
                 if (stateCopy.players[0].name) {
                     stateCopy.winnerName = stateCopy.players[0].name;
                 } else {
@@ -205,7 +203,7 @@ let gameReducer = (state = initialState, action) => {
                 }
             }
 
-            if (stateCopy.winner && stateCopy.winner.winnerSymbol == config.zero) {
+            if (stateCopy.winner.winnerDetected && stateCopy.winner.winnerSymbol == config.zero) {
                 if (stateCopy.players[1].name) {
                     stateCopy.winnerName = stateCopy.players[1].name;
                 } else {
@@ -214,12 +212,12 @@ let gameReducer = (state = initialState, action) => {
 
             }
 
-            if (stateCopy.winner && stateCopy.winner == config.drawGame) {
+            if (stateCopy.winner.winnerDetected && stateCopy.winner.type == config.drawGame) {
                 stateCopy.winnerName = config.drawGame;
             }
             console.log(stateCopy.winner)
 
-            if (stateCopy.winner) {
+            if (stateCopy.winner.winnerDetected) {
                 stateCopy.pressed = false;
                 stateCopy.modalVisible = true;
 
@@ -227,8 +225,8 @@ let gameReducer = (state = initialState, action) => {
 
                     if (store.get('scoreTable')) {
                         let winnersArray = store.get('scoreTable')
-                        if (winnersArray.length >= 12) {
-                            winnersArray = winnersArray.slice(-11)
+                        if (winnersArray.length >= config.rowsInScoreTable) {
+                            winnersArray = winnersArray.slice(-config.rowsInScoreTable+1)
                         }
                         winnersArray.push([stateCopy.gameNumber, stateCopy.winnerName]);
                         store.set('scoreTable', winnersArray)
@@ -268,19 +266,21 @@ let gameReducer = (state = initialState, action) => {
                 item.classNames.splice(2, 2)
             }
         })
+        stateCopy.fieldSize = action.field;
 
-        stateCopy[state.field] = state[state.field].map((item) => [...item]);
-        for (let i = 1; i <= stateCopy[state.field].length - 2; i++) {
-            for (let j = 0; j <= stateCopy[state.field].length - 1; j++) {
-                if (stateCopy[state.field][i][j]) {
-                    stateCopy[state.field][i][j] = ''
-                }
-            }
+        stateCopy.currentGamefield = new Array(stateCopy.fieldSize);
+        console.log(typeof(action.field))
+
+        for (let i = 0; i < stateCopy.currentGamefield.length; i++) {
+            stateCopy.currentGamefield[i] = new Array(stateCopy.fieldSize);
         }
+
+        console.log(stateCopy.currentGamefield)
+
         if (!stateCopy.winnerName && stateCopy.gameNumber != 0) {
             if (store.get('scoreTable')) {
                 let winnersArray = store.get('scoreTable')
-                if (winnersArray.length >= 12) {
+                if (winnersArray.length >= config.rowsInScoreTable) {
                     winnersArray = winnersArray.slice(-11)
                 }
                 winnersArray.push([stateCopy.gameNumber, '-']);
@@ -296,8 +296,7 @@ let gameReducer = (state = initialState, action) => {
         }
         stateCopy.winner = '';
         stateCopy.winnerName = '';
-        stateCopy.gamefieldClassName = action.field;
-        stateCopy.field = action.field;
+        stateCopy.fieldSize = action.field;
         return stateCopy
     }
     return state
