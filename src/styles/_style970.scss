@@ -16,22 +16,20 @@
             flex-wrap: wrap;
             .player-container {
                 flex-basis: 50%;
-
                 order: -1;
                 .player {
-                flex-basis: 28%;
-                order: -1;
-                margin: 2rem 22%;
-                min-width: 16rem;
-            } 
+                    flex-basis: 28%;
+                    order: -1;
+                    margin: 2rem 22%;
+                    min-width: 16rem;
+                }
             }
-
-    
-            .start, .game-counter, .select-field {
+            .start,
+            .game-counter,
+            .select-field {
                 flex-basis: calc(100%/3);
             }
         }
-
         .game {
             .game-counter {
                 .counter-text {
