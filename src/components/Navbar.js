@@ -26,7 +26,6 @@ class Navbar extends React.Component {
                             </div>
                         )
                     })}
-                    <div className="empty"></div>
                     <div className="lang-tab">
                         <div className="lang"><a onClick={()=>{this.props.changeToRuAC()}}>Ru</a></div>
                         <div className="lang"><a onClick={()=>{this.props.changeToEnAC()}}>En</a></div>

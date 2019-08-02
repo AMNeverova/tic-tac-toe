@@ -7,7 +7,7 @@
     "player2": "Player2",
     "cross": "x",
     "zero": "o",
-    "gamefield3": "gamefield3",
-    "gamefield5": "gamefield5",
-    "gamefield10": "gamefield10"
+    "maxCellNumber": 40,
+    "minCellNumber": 3,
+    "scoreTableLength": 12
 }

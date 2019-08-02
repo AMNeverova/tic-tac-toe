@@ -22,6 +22,7 @@ class App extends React.Component {
                     <Navbar state={this.props.state} changeToEnAC={this.props.changeToEnAC} changeToRuAC={this.props.changeToRuAC} />
                     <Switch>
                         <Route path='/' exact component={Game} />
+                        
                         <Route path='/scoreTable/' component={ScoreTable} />
                     </Switch>
                 </div>

@@ -215,7 +215,6 @@ let gameReducer = (state = initialState, action) => {
             if (stateCopy.winner.winnerDetected && stateCopy.winner.type == config.drawGame) {
                 stateCopy.winnerName = config.drawGame;
             }
-            console.log(stateCopy.winner)
 
             if (stateCopy.winner.winnerDetected) {
                 stateCopy.pressed = false;
@@ -281,7 +280,7 @@ let gameReducer = (state = initialState, action) => {
             if (store.get('scoreTable')) {
                 let winnersArray = store.get('scoreTable')
                 if (winnersArray.length >= config.rowsInScoreTable) {
-                    winnersArray = winnersArray.slice(-11)
+                    winnersArray = winnersArray.slice(-(config.rowsInScoreTable-1))
                 }
                 winnersArray.push([stateCopy.gameNumber, '-']);
                 store.set('scoreTable', winnersArray)

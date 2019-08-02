@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import config from '../configuration/config.json';
 
 class SelectField extends React.Component {
     constructor() {
@@ -14,7 +15,7 @@ class SelectField extends React.Component {
 
     render() {
         let options = []
-        for (let i = 3; i <= 100; i++) {
+        for (let i = config.minCellNumber; i <= config.maxCellNumber; i++) {
             options.push(<option key={i} value={i}>{i}x{i}</option>)
         }
         return (

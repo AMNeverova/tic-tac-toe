@@ -32,14 +32,16 @@ class Player extends React.Component {
         })
 
         return(
-            <div className={classNameString}>
-                <p className='player-title'>{this.props.state.id == 1? <FormattedMessage id="player1Title" /> : <FormattedMessage id="player2Title" />}</p>
-                <div className='player-name'>{this.props.state.name}</div>
-                <div className='player-input-name'>
-                    {this.props.state.name? 
-                        <button className='button button-change-name' onClick={this.handleClick} type='submit'><FormattedMessage id='changeNameButton' /></button> : 
-                        <input type="text" onKeyDown={this.handleEnterPress} value={this.props.state.value} onChange={this.handleChange} className='input-player-name' placeholder={this.props.intl.messages.placeholder} />}
-                    {this.props.state.value? <button className='button' onClick={this.handleClick} type='submit'>Ok</button> : null}
+            <div className='player-container'>
+                <div className={classNameString}>
+                    <p className='player-title'>{this.props.state.id == 1? <FormattedMessage id="player1Title" /> : <FormattedMessage id="player2Title" />}</p>
+                    <div className='player-name'>{this.props.state.name}</div>
+                    <div className='player-input-name'>
+                        {this.props.state.name? 
+                            <button className='button button-change-name' onClick={this.handleClick} type='submit'><FormattedMessage id='changeNameButton' /></button> : 
+                            <input type="text" onKeyDown={this.handleEnterPress} value={this.props.state.value} onChange={this.handleChange} className='input-player-name' placeholder={this.props.intl.messages.placeholder} />}
+                        {this.props.state.value? <button className='button' onClick={this.handleClick} type='submit'>Ok</button> : null}
+                    </div>
                 </div>
             </div>
         )

@@ -17,7 +17,6 @@ class Game extends React.Component {
     }
     render() {
         let name;
-        console.log(this.props.state.winnerName)
         switch (this.props.state.winnerName) {
             case config.player1:
                 name = <FormattedMessage id='player1Title' />

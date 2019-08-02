@@ -1,0 +1,123 @@
+@media screen and (min-width:350px) and (max-width: 590px) {
+    .container {
+        .navbar {
+            .tab2 {
+                flex-basis: 24rem;
+                a {
+                    text-align: unset;
+                    padding-left: 1rem;
+                }
+            }
+            .lang-tab {
+                flex-basis: 6%;
+            }
+        }
+        .player-line {
+            flex-wrap: wrap;
+            .player-container, .select-field {
+                flex-basis: 100%;
+            }
+            .game-counter {
+                flex-basis: 30%;
+                .counter-text {
+                    margin: 1rem 0 0 1rem;
+                    height: 2rem;
+                    width: 7rem;
+                    font-size: 1.5rem;
+                }
+            }
+            .start {
+                flex-basis: 70%;
+                .button-start {
+                    margin-left: 3rem;
+                }
+                .warning {
+                    text-align: unset;
+                    padding-left: 1rem;
+                }
+            }
+            .player-container {
+                order: -1;
+                .player {
+                    margin: 2rem 22%;
+                    min-width: 16rem;    
+                }
+            }
+            .select-field {
+                order: 0;
+                .select-text {
+                    text-align: center;
+                }
+                .select-options {
+                    margin-left: calc(50% - 2.5rem)
+                }
+            }
+            .start, .game-counter {
+                order: 1;
+            }
+        }
+    }
+}
+.game {
+    @for $i from 3 through 9 {
+        .gamefield#{$i} {
+            width: 20rem;
+            height: 20rem;
+            .cell {
+                width: (20rem/#{$i});
+                height: (20rem/#{$i});
+                .picture {
+                    width: (18rem/#{$i});
+                    height: (18rem/#{$i});
+                }
+            }
+            div:nth-child(n):not(:nth-child(#{$i}n+1)) {
+                border-left: $border-cell-wide;
+            }
+            div:nth-child(n):nth-child(-n+#{$i * $i - $i}) {
+                border-bottom: $border-cell-wide;
+            }
+        }
+    }
+    @for $i from 10 through 20 {
+        .gamefield#{$i} {
+            width: 25rem;
+            height: 25rem;
+            .cell {
+                width: (25rem/#{$i});
+                height: (25rem/#{$i});
+                .picture {
+                    width: (15rem/#{$i});
+                    height: (15rem/#{$i});
+                }
+            }
+            div:nth-child(n):not(:nth-child(#{$i}n+1)) {
+                border-left: $border-cell-thin;
+            }
+            div:nth-child(n):nth-child(-n+#{$i * $i - $i}) {
+                border-bottom: $border-cell-thin;
+            }
+        }
+    }
+    @for $i from 21 through 100 {
+        .gamefield#{$i} {
+            border-radius: 2%;
+            width: ($i * 2rem);
+            height: ($i * 2rem);
+            .cell {
+                width: 2rem;
+                height: 2rem;
+                .picture {
+                    width: 1.8rem;
+                    height: 1.8rem;
+                }
+            }
+            div:nth-child(n):not(:nth-child(#{$i}n+1)) {
+                border-left: $border-cell-thin;
+            }
+            div:nth-child(n):nth-child(-n+#{$i * $i - $i}) {
+                border-bottom: $border-cell-thin;
+            }
+        }
+    }
+}

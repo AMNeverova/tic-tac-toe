@@ -1,0 +1,43 @@
+@media screen and (min-width:591px) and (max-width: 1170px) {
+    .container {
+        .navbar {
+            .tab2 {
+                flex-basis: 20rem;
+                a {
+                    text-align: unset;
+                    padding-left: 1rem;
+                }
+            }
+            .empty {
+                flex-basis: 10%;
+            }
+        }
+        .player-line {
+            flex-wrap: wrap;
+            .player-container {
+                flex-basis: 50%;
+
+                order: -1;
+                .player {
+                flex-basis: 28%;
+                order: -1;
+                margin: 2rem 22%;
+                min-width: 16rem;
+            } 
+            }
+
+    
+            .start, .game-counter, .select-field {
+                flex-basis: calc(100%/3);
+            }
+        }
+
+        .game {
+            .game-counter {
+                .counter-text {
+                    margin: 1rem 0 0 7rem;
+                }
+            }
+        }
+    }
+}
