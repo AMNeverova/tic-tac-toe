@@ -1,4 +1,4 @@
-import { cellClickActionType, buttonStartActionType, enterNameActionType, submitNameActionType, changeToEnActionType, changeToRuActionType, clickTabActionType, clickModalActionType, changeFieldSizeActionType } from "./actionTypes";
+import { cellClickActionType, buttonStartActionType, enterNameActionType, submitNameActionType, changeToEnActionType, changeToRuActionType, clickTabActionType, clickModalActionType, changeFieldSizeActionType, changeWinQuantityActionType } from "./actionTypes";
 
 export let cellClickAC = (row, cellId) => {
     return {
@@ -38,4 +38,10 @@ export const changeFieldSizeAC = (field) => {
     return {
         type: changeFieldSizeActionType,
         field    }
+}
+
+export const changeWinQuantityAC = (quantity) => {
+    return {
+        type: changeWinQuantityActionType,
+        quantity    }
 }

@@ -3,7 +3,7 @@ import Player from './Player.js';
 import Gamefield from './Gamefield';
 import Start from './Start';
 import {connect} from 'react-redux';
-import {enterNameAC, buttonStartAC, submitNameAC, cellClickAC, clickModalAC, changeFieldSizeAC} from '../redux/actionCreators';
+import {changeWinQuantityAC, enterNameAC, buttonStartAC, submitNameAC, cellClickAC, clickModalAC, changeFieldSizeAC} from '../redux/actionCreators';
 import GameCounter from './GameCounter';
 import Modal from 'react-awesome-modal';
 import { FormattedMessage } from 'react-intl';
@@ -37,7 +37,7 @@ class Game extends React.Component {
                     <Player state={this.props.state.players[0]} submitNameAC={this.props.submitNameAC} enterNameAC={this.props.enterNameAC} />
                     <GameCounter state={this.props.state} />
                     <Start state={this.props.state.pressed} buttonStartAC={this.props.buttonStartAC} />
-                    <SelectField changeFieldSizeAC={this.props.changeFieldSizeAC} state={this.props.state} />
+                    <SelectField changeWinQuantityAC={this.props.changeWinQuantityAC} changeFieldSizeAC={this.props.changeFieldSizeAC} state={this.props.state} />
                     <Player state={this.props.state.players[1]} submitNameAC={this.props.submitNameAC} enterNameAC={this.props.enterNameAC} />
                     <Modal onClickAway={()=>this.closeModal()} visible={this.props.state.modalVisible} width='300' height='200' effect="fadeInUp">
                     <div>
@@ -60,4 +60,4 @@ class Game extends React.Component {
 
 const mapStateToProps = state => ({state: state.game})
 
-export default connect(mapStateToProps, {enterNameAC, buttonStartAC, submitNameAC, cellClickAC, clickModalAC, changeFieldSizeAC})(Game);
+export default connect(mapStateToProps, {changeWinQuantityAC, enterNameAC, buttonStartAC, submitNameAC, cellClickAC, clickModalAC, changeFieldSizeAC})(Game);

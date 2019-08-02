@@ -105,18 +105,16 @@ html {
                 border: 0.2rem solid;
                 font-family: Comfortaa;
             }
+            .warning {
+                @include warning;
+            }
         }
 
         .start {
             height: 4.5rem;
             flex-basis: 15%;
             .warning {
-                flex-basis: 100%;
-                color: $red;
-                padding-top: 0.5rem;
-                font-weight: 500;
-                font-family: $font-family;
-                text-align: center;
+                @include warning;
             }
             .button-start {
                 margin-top: 1rem;

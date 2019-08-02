@@ -13,7 +13,9 @@
     "warning": "Please, press Start",
     "changeNameButton": "Change Name",
     "startAgainButton": "Start Again",
-    "selectText": "Choose field size",
+    "selectFieldText": "Choose field size",
+    "selectCombinationText": "Choose winning quantity",
+    "sizeWarning": "Please, change field size first",
     "gameNumber": "Game Number",
     "table-winner": "Winner"
 }

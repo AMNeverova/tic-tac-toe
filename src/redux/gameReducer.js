@@ -5,7 +5,8 @@ import {
     submitNameActionType,
     cellClickActionType,
     clickModalActionType,
-    changeFieldSizeActionType
+    changeFieldSizeActionType,
+    changeWinQuantityActionType
 } from "./actionTypes";
 
 import store from 'store';
@@ -28,36 +29,6 @@ const initialState = {
             "classNames": ["player", "player2"]
         }
     ],
-    "gamefield3": [
-        [null, null, null],
-        ['', '', ''],
-        ['', '', ''],
-        ['', '', ''],
-        [null, null, null]
-    ],
-    "gamefield5": [
-        [null, null, null, null, null],
-        ['', '', '', '', ''],
-        ['', '', '', '', ''],
-        ['', '', '', '', ''],
-        ['', '', '', '', ''],
-        ['', '', '', '', ''],
-        [null, null, null, null, null]
-    ],
-    "gamefield10": [
-        [null, null, null, null, null, null, null, null, null, null],
-        ['', '', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', '', ''],
-        [null, null, null, null, null, null, null, null, null, null]
-    ],
     "winner": '',
     "clicks": 0,
     "pressed": false,
@@ -67,7 +38,8 @@ const initialState = {
     "field": "gamefield3",
     "winningCombination": 3,
     "currentGamefield": [['', '', ''], ['', '', ''], ['', '', '']],
-    "fieldSize": 3
+    "fieldSize": 3,
+    "showFieldSizeWarning": false
 }
 
 let gameReducer = (state = initialState, action) => {
@@ -268,13 +240,10 @@ let gameReducer = (state = initialState, action) => {
         stateCopy.fieldSize = action.field;
 
         stateCopy.currentGamefield = new Array(stateCopy.fieldSize);
-        console.log(typeof(action.field))
 
         for (let i = 0; i < stateCopy.currentGamefield.length; i++) {
             stateCopy.currentGamefield[i] = new Array(stateCopy.fieldSize);
         }
-
-        console.log(stateCopy.currentGamefield)
 
         if (!stateCopy.winnerName && stateCopy.gameNumber != 0) {
             if (store.get('scoreTable')) {
@@ -296,7 +265,23 @@ let gameReducer = (state = initialState, action) => {
         stateCopy.winner = '';
         stateCopy.winnerName = '';
         stateCopy.fieldSize = action.field;
+        if (stateCopy.fieldSize < stateCopy.winningCombination) {
+            stateCopy.showFieldSizeWarning = true;
+        } else {
+            stateCopy.showFieldSizeWarning = false;
+        }
         return stateCopy
+    }
+
+    if (action.type === changeWinQuantityActionType) {
+        let stateCopy = {...state}
+        if (stateCopy.fieldSize >= action.quantity) {
+            stateCopy.winningCombination = action.quantity;
+            stateCopy.showFieldSizeWarning = false;
+        } else {
+            stateCopy.showFieldSizeWarning = true;
+        }
+        return stateCopy;
     }
     return state
 }

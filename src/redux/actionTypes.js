@@ -7,3 +7,4 @@ export const changeToRuActionType = 'CHANGE-TO-RU';
 export const clickTabActionType = 'TAB-CLICK';
 export const clickModalActionType = 'CLICK-MODAL';
 export const changeFieldSizeActionType = 'CHANGE-FIELD-SIZE';
+export const changeWinQuantityActionType = 'CHANGE-WIN-QUANTITY';

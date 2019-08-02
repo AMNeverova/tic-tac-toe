@@ -9,5 +9,7 @@
     "zero": "o",
     "maxCellNumber": 40,
     "minCellNumber": 3,
-    "scoreTableLength": 12
+    "scoreTableLength": 12,
+    "minCellQuantity": 3,
+    "maxCellQuantity": 5
 }
