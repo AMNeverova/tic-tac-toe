@@ -11,7 +11,7 @@ import {
 
 import store from 'store';
 import config from '../configuration/config.json';
-import findWinner from "../redux/findWinner";
+import findWinner from 'tic-tac-toe-detect-winner';
 
 const initialState = {
     "players": [{
@@ -29,7 +29,7 @@ const initialState = {
             "classNames": ["player", "player2"]
         }
     ],
-    "winner": '',
+    "winner": {},
     "clicks": 0,
     "pressed": false,
     "winnerName": '',
@@ -80,7 +80,7 @@ let gameReducer = (state = initialState, action) => {
                 winnersArray.push([stateCopy.gameNumber, '-']);
                 store.set('scoreTable', winnersArray)
             } else {
-                store.set('scoreTable', [stateCopy.gameNumber, '-'])
+                store.set('scoreTable', [[stateCopy.gameNumber, '-']])
             }
 
         }
@@ -202,7 +202,7 @@ let gameReducer = (state = initialState, action) => {
                         winnersArray.push([stateCopy.gameNumber, stateCopy.winnerName]);
                         store.set('scoreTable', winnersArray)
                     } else {
-                        store.set('scoreTable', [stateCopy.gameNumber, stateCopy.winnerName])
+                        store.set('scoreTable', [[stateCopy.gameNumber, stateCopy.winnerName]])
                     }
                 }
             }
@@ -254,7 +254,7 @@ let gameReducer = (state = initialState, action) => {
                 winnersArray.push([stateCopy.gameNumber, '-']);
                 store.set('scoreTable', winnersArray)
             } else {
-                store.set('scoreTable', [stateCopy.gameNumber, '-'])
+                store.set('scoreTable', [[stateCopy.gameNumber, '-']])
             }
 
         }
@@ -262,7 +262,7 @@ let gameReducer = (state = initialState, action) => {
         if (stateCopy.gameNumber !=0) {
             stateCopy.gameNumber += 1;
         }
-        stateCopy.winner = '';
+        stateCopy.winner = {};
         stateCopy.winnerName = '';
         stateCopy.fieldSize = action.field;
         if (stateCopy.fieldSize < stateCopy.winningCombination) {
@@ -274,6 +274,7 @@ let gameReducer = (state = initialState, action) => {
     }
 
     if (action.type === changeWinQuantityActionType) {
+
         let stateCopy = {...state}
         if (stateCopy.fieldSize >= action.quantity) {
             stateCopy.winningCombination = action.quantity;
@@ -281,6 +282,49 @@ let gameReducer = (state = initialState, action) => {
         } else {
             stateCopy.showFieldSizeWarning = true;
         }
+        stateCopy.winner = {...state.winner};
+        if (!stateCopy.winner.winnerDetected && state.clicks != 0) {
+            stateCopy.winner = findWinner(state.currentGamefield, stateCopy.winningCombination);
+            if (stateCopy.winner.winnerDetected && stateCopy.winner.winnerSymbol == config.cross) {
+                if (stateCopy.players[0].name) {
+                    stateCopy.winnerName = stateCopy.players[0].name;
+                } else {
+                    stateCopy.winnerName = config.player1
+                }
+            }
+    
+            if (stateCopy.winner.winnerDetected && stateCopy.winner.winnerSymbol == config.zero) {
+                if (stateCopy.players[1].name) {
+                    stateCopy.winnerName = stateCopy.players[1].name;
+                } else {
+                    stateCopy.winnerName = config.player2
+                }
+            }
+    
+            if (stateCopy.winner.winnerDetected && stateCopy.winner.type == config.drawGame) {
+                stateCopy.winnerName = config.drawGame;
+            }
+    
+            if (stateCopy.winner.winnerDetected) {
+                stateCopy.pressed = false;
+                stateCopy.modalVisible = true;
+    
+                if (stateCopy.winnerName) {
+    
+                    if (store.get('scoreTable')) {
+                        let winnersArray = store.get('scoreTable')
+                        if (winnersArray.length >= config.rowsInScoreTable) {
+                            winnersArray = winnersArray.slice(-config.rowsInScoreTable+1)
+                        }
+                        winnersArray.push([stateCopy.gameNumber, stateCopy.winnerName]);
+                        store.set('scoreTable', winnersArray)
+                    } else {
+                        store.set('scoreTable', [[stateCopy.gameNumber, stateCopy.winnerName]])
+                    }
+                }
+            }
+        }
+
         return stateCopy;
     }
     return state

@@ -1,19 +1,20 @@
 import { clickTabActionType } from './actionTypes';
+import config from '../configuration/config.json';
 
 let initialState = [
     {
         id: 1,
         active: true,
-        className: 'tab tab1 active',
-        linkTo: '/',
-        text: "Игра"
+        className: 'tab tab1',
+        linkTo: config.tab1address,
+        name: config.tab1name
     },
     {
         id: 2,
         active: false,
         className: 'tab tab2',
-        linkTo: '/scoreTable',
-        text: "Таблица результатов"
+        linkTo: config.tab2address,
+        name: config.tab2name
     }
 ]
 

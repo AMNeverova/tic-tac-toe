@@ -47,6 +47,7 @@
     "react-dom": "^16.8.6",
     "react-intl": "^2.9.0",
     "react-router-dom": "^5.0.1",
-    "store": "^2.0.12"
+    "store": "^2.0.12",
+    "tic-tac-toe-detect-winner": "^1.0.2"
   }
 }

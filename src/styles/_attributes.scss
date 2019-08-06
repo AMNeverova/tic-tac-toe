@@ -60,6 +60,7 @@ $font-family: 'Comfortaa';
         .gamefield#{$i} {
             width: 40rem;
             height: 40rem;
+            min-width: 40rem;
             .cell {
                 width: (40rem/#{$i});
                 height: (40rem/#{$i});
@@ -77,11 +78,12 @@ $font-family: 'Comfortaa';
         }
     }
     
-    @for $i from 21 through 100 {
+    @for $i from 21 through 40 {
         .gamefield#{$i} {
             border-radius: 2%;
             width: ($i * 2rem);
             height: ($i * 2rem);
+            min-width: ($i * 2rem);
             .cell {
                 width: 2rem;
                 height: 2rem;

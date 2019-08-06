@@ -4,11 +4,10 @@ import Cell from './Cell.js';
 class Gamefield extends React.Component {
     render() {
         let CellComponents = []
-        let winnerArray = this.props.state.winner? this.props.state.winner.coordinates.map((item) => [...item]) : null;
-
+        let winnerArray = this.props.state.winner.winnerDetected? this.props.state.winner.location.map((item) => [...item]) : null;
         for (let i = 0; i <= this.props.state.currentGamefield.length - 1; i++) {
             for (let j = 0; j <= this.props.state.currentGamefield[i].length - 1; j++) {
-                if (this.props.state.winner) {
+                if (this.props.state.winner.winnerDetected) {
                     if (winnerArray.length > 0) {
                         if (winnerArray[0][0] == i && winnerArray[0][1] == j ) {
                             CellComponents.push(

@@ -1,6 +1,9 @@
 @media screen and (min-width:350px) and (max-width: 590px) {
     html {
         font-size: 0.8rem;
+        :-ms-input-placeholder {
+            font-size: 0.8rem;
+        }
     }
     .container {
         .navbar {
@@ -36,7 +39,7 @@
                     margin-left: 3rem;
                 }
                 .warning {
-                    text-align: unset;
+                    text-align: left;
                     padding-left: 1rem;
                 }
             }
@@ -45,6 +48,7 @@
                 .player {
                     margin: 2rem 22%;
                     min-width: 16rem;
+                    max-width: 21rem;
                 }
             }
             .select-field {
@@ -112,11 +116,12 @@
                 }
             }
         }
-        @for $i from 21 through 100 {
+        @for $i from 21 through 40 {
             .gamefield#{$i} {
                 border-radius: 2%;
                 width: ($i * 1.5rem);
                 height: ($i * 1.5rem);
+                min-width: ($i * 1.5rem);
                 .cell {
                     width: 1.5rem;
                     height: 1.5rem;

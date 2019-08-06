@@ -14,7 +14,7 @@
     "changeNameButton": "Change Name",
     "startAgainButton": "Start Again",
     "selectFieldText": "Choose field size",
-    "selectCombinationText": "Choose winning quantity",
+    "selectCombinationText": "Choose quantity of symbols in winning block",
     "sizeWarning": "Please, change field size first",
     "gameNumber": "Game Number",
     "table-winner": "Winner"

@@ -11,5 +11,9 @@
     "minCellNumber": 3,
     "scoreTableLength": 12,
     "minCellQuantity": 3,
-    "maxCellQuantity": 5
+    "maxCellQuantity": 5,
+    "tab1name": "game",
+    "tab2name": "scoreTable",
+    "tab1address": "/",
+    "tab2address": "/scoreTable"
 }
