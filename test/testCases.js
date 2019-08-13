@@ -1,4 +1,4 @@
-const field =  [['', '', '', '', '', '', '', '', '', ''],
+const field = [['', '', '', '', '', '', '', '', '', ''],
                 ['', '', '', '', '', '', '', '', '', ''],
                 ['', '', '', '', '', '', '', '', '', ''],
                 ['', '', '', '', '', '', '', '', '', ''],
@@ -9,14 +9,7 @@ const field =  [['', '', '', '', '', '', '', '', '', ''],
                 ['', '', '', '', '', '', '', '', '', ''],
                 ['', '', '', '', '', '', '', '', '', '']]
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
-let row = getRandomInt(1, 4)
-let cell = getRandomInt(1, 4)
-
-function getTestCase(symbol, firstPoint, type) {
+function getTestCase (symbol, firstPoint, type) {
     let fieldCopy = [...field]
    fieldCopy = field.map((el) => {
         return (el.map((el) => {
@@ -70,17 +63,3 @@ test.zeroCol50 = getTestCase('0', [5, 0], 'col');
 test.zeroCol72 = getTestCase('0', [7, 2], 'col');
 
 module.exports = test;
-
-
-
-
-
-
-
-
-
-
-
-
-
-

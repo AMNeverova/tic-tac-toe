@@ -3,7 +3,6 @@ module.exports = {
         "browser": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -21,8 +20,27 @@ module.exports = {
     "rules": {
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
-        "no-debugger": "off",
-        "no-console": "off",
-        "no-useless-escape": "off"
+        "no-debugger": "warn",
+        "no-extra-semi": "warn",
+        "no-console": "error",
+        "no-useless-escape": "off",
+        "no-irregular-whitespace": "error",
+        "class-methods-use-this": "warn",
+        "curly": "warn",
+        "eqeqeq": "error",
+        "no-extra-bind": "error",
+        "no-fallthrough": "error",
+        "no-lone-blocks": "warn",
+        "no-multi-spaces": "error",
+        "no-useless-return": "error",
+        "brace-style": "warn",
+        "comma-spacing": "error",
+        "comma-style": "warn",
+        "no-mixed-spaces-and-tabs": "warn",
+        "no-multiple-empty-lines": "error",
+        "no-unneeded-ternary": "error",
+        "semi-style": "error",
+        "space-before-function-paren": "warn"
+
     }
 };

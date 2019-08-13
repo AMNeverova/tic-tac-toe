@@ -15,5 +15,8 @@
     "tab1name": "game",
     "tab2name": "scoreTable",
     "tab1address": "/",
-    "tab2address": "/scoreTable"
+    "tab2address": "/scoreTable",
+    "columnsInScoreTable": 2,
+    "borderInScoreTable": 1,
+    "cellPaddingInScoreTable": 5
 }

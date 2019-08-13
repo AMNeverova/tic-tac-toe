@@ -6,20 +6,20 @@ import {FormattedMessage} from 'react-intl';
 import config from '../configuration/config.json';
 
 class Navbar extends React.Component {
-    constructor() {
+    constructor () {
         super();
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(id) {
+    handleClick (id) {
         this.props.clickTabAC(id);
     }
 
-    render() {
+    render () {
         let TabComponents = []
         this.props.state.map((item) => {
             TabComponents.push(
-                <div key={item.id} onClick={() => {this.handleClick(item.id)}} className={this.props.location.pathname == item.linkTo? item.className + ' active' : item.className}>
+                <div key={item.id} onClick={() => this.handleClick(item.id)} className={this.props.location.pathname === item.linkTo? item.className + ' active' : item.className}>
                 <NavLink to={item.linkTo}>
                     {item.name === config.tab1name? <FormattedMessage id='tab.game' /> : <FormattedMessage id='tab.scoreTable' /> }
                 </NavLink>
@@ -31,8 +31,8 @@ class Navbar extends React.Component {
             <div className='navbar'>
                     {TabComponents}
                     <div className="lang-tab">
-                        <div className="lang"><a onClick={()=>{this.props.changeToRuAC()}}>Ru</a></div>
-                        <div className="lang"><a onClick={()=>{this.props.changeToEnAC()}}>En</a></div>
+                        <div className="lang"><a onClick={()=> this.props.changeToRuAC()}>Ru</a></div>
+                        <div className="lang"><a onClick={()=> this.props.changeToEnAC()}>En</a></div>
                     </div>
             </div>
         )
@@ -41,5 +41,4 @@ class Navbar extends React.Component {
 
 const mapStateToProps = (state) => ({state: state.tabs});
 let NavbarContainer = withRouter(Navbar);
-
 export default connect(mapStateToProps, {clickTabAC})(NavbarContainer);

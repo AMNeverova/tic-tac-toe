@@ -19,7 +19,7 @@ let initialState = [
 ]
 
 let tabReducer = (state = initialState, action) => {
-    if (action.type == clickTabActionType) {
+    if (action.type === clickTabActionType) {
         let stateCopy = state.map((item) => {
             return {...item}
         })
@@ -27,14 +27,13 @@ let tabReducer = (state = initialState, action) => {
         stateCopy.map((item) => {
             item.active = false;
             document.querySelector(`.tab${item.id}`).classList.remove('active');
-            if (item.id == action.id) {
+            if (item.id === action.id) {
                 item.active = true;
                 document.querySelector(`.tab${item.id}`).classList.add('active');
             }
         })
-        return stateCopy
+        return stateCopy;
     }
-    return state
+    return state;
 }
-
 export default tabReducer;

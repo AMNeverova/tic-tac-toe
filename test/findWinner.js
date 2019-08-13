@@ -13,16 +13,16 @@ let findWinner = module.exports = function (field, n) {
     for (let i = 0; i < field.length; i++) {
       let counter = 1;
       for (let j = 0; j < field[i].length - 1; j++) {
-        if (field[i][j] && field[i][j] == field[i][j + 1]) {
-          counter += 1
-          if (counter == n) {
+        if (field[i][j] && field[i][j] === field[i][j + 1]) {
+          counter += 1;
+          if (counter === n) {
             result.winnerDetected = true;
-            result.type = 'row',
-              result.lastPoint.push(i, j + 1)
-            result.winnerSymbol = field[i][j]
+            result.type = 'row';
+            result.lastPoint.push(i, j + 1);
+            result.winnerSymbol = field[i][j];
           }
         } else {
-          counter = 1
+          counter = 1;
         }
       }
     }
@@ -30,13 +30,13 @@ let findWinner = module.exports = function (field, n) {
     for (let j = 0; j < field.length; j++) {
       let counter = 1;
       for (let i = 0; i < field[j].length - 1; i++) {
-        if (field[i][j] && field[i][j] == field[i + 1][j]) {
-          counter += 1
-          if (counter == n) {
+        if (field[i][j] && field[i][j] === field[i + 1][j]) {
+          counter += 1;
+          if (counter === n) {
             result.winnerDetected = true;
-            result.type = 'col',
-              result.lastPoint.push(i + 1, j);
-            result.winnerSymbol = field[i][j]
+            result.type = 'col';
+            result.lastPoint.push(i + 1, j);
+            result.winnerSymbol = field[i][j];
           }
         } else {
           counter = 1
@@ -48,18 +48,17 @@ let findWinner = module.exports = function (field, n) {
       let startPoint = [0, i];
       let counter = 1;
       for (let j = 0; j < field.length - 1; j++) {
-  
         if (startPoint[0] + j < field.length - 1 && startPoint[1] + j < field.length - 1) {
-          if (field[startPoint[0] + j][startPoint[1] + j] && field[startPoint[0] + j][startPoint[1] + j] == field[startPoint[0] + j + 1][startPoint[1] + j + 1]) {
+          if (field[startPoint[0] + j][startPoint[1] + j] && field[startPoint[0] + j][startPoint[1] + j] === field[startPoint[0] + j + 1][startPoint[1] + j + 1]) {
             counter += 1;
-            if (counter == n) {
+            if (counter === n) {
               result.winnerDetected = true;
-              result.type = 'diag-up-left',
-                result.lastPoint.push(startPoint[0] + j + 1, startPoint[1] + j + 1);
-              result.winnerSymbol = field[startPoint[0] + j][startPoint[1] + j]
+              result.type = 'diag-up-left';
+              result.lastPoint.push(startPoint[0] + j + 1, startPoint[1] + j + 1);
+              result.winnerSymbol = field[startPoint[0] + j][startPoint[1] + j];
             }
           } else {
-            counter = 1
+            counter = 1;
           }
         }
       }
@@ -69,15 +68,13 @@ let findWinner = module.exports = function (field, n) {
       let startPoint = [i, 0];
       let counter = 1;
       for (let j = 0; j < field.length - 1; j++) {
-  
         if (startPoint[0] + j < field.length - 1 && startPoint[1] + j < field.length - 1) {
-          if (field[startPoint[0] + j][startPoint[1] + j] && field[startPoint[0] + j][startPoint[1] + j] == field[startPoint[0] + j + 1][startPoint[1] + j + 1]) {
+          if (field[startPoint[0] + j][startPoint[1] + j] && field[startPoint[0] + j][startPoint[1] + j] === field[startPoint[0] + j + 1][startPoint[1] + j + 1]) {
             counter += 1;
-  
-            if (counter == n) {
+            if (counter === n) {
               result.winnerDetected = true;
-              result.type = 'diag-up-left',
-                result.lastPoint.push(startPoint[0] + j + 1, startPoint[1] + j + 1);
+              result.type = 'diag-up-left';
+              result.lastPoint.push(startPoint[0] + j + 1, startPoint[1] + j + 1);
               result.winnerSymbol = field[startPoint[0] + j][startPoint[1] + j];
             }
           } else {
@@ -92,16 +89,16 @@ let findWinner = module.exports = function (field, n) {
       let counter = 1;
       for (let j = 0; j < field.length - 1; j++) {
         if ((startPoint[0] + j) < field.length - 1 && (startPoint[1] - j) >= 0) {
-          if (field[startPoint[0] + j][startPoint[1] - j] && field[startPoint[0] + j][startPoint[1] - j] == field[startPoint[0] + j + 1][startPoint[1] - j - 1]) {
+          if (field[startPoint[0] + j][startPoint[1] - j] && field[startPoint[0] + j][startPoint[1] - j] === field[startPoint[0] + j + 1][startPoint[1] - j - 1]) {
             counter += 1;
-            if (counter == n) {
+            if (counter === n) {
               result.winnerDetected = true;
               result.type = 'diag-up-right',
                 result.lastPoint.push(startPoint[0] + j + 1, startPoint[1] - j - 1);
               result.winnerSymbol = field[startPoint[0] + j][startPoint[1] - j];
             }
           } else {
-            counter = 1
+            counter = 1;
           }
         }
       }
@@ -112,16 +109,16 @@ let findWinner = module.exports = function (field, n) {
       let counter = 1;
       for (let j = 0; j < field.length - 1; j++) {
         if (startPoint[0] + j < field.length - 1 && startPoint[1] - j > 0) {
-          if (field[startPoint[0] + j][startPoint[1] - j] && field[startPoint[0] + j][startPoint[1] - j] == field[startPoint[0] + j + 1][startPoint[1] - j - 1]) {
+          if (field[startPoint[0] + j][startPoint[1] - j] && field[startPoint[0] + j][startPoint[1] - j] === field[startPoint[0] + j + 1][startPoint[1] - j - 1]) {
             counter += 1;
-            if (counter == n) {
+            if (counter === n) {
               result.winnerDetected = true;
               result.type = 'diag-up-right',
                 result.lastPoint.push(startPoint[0] + j + 1, startPoint[1] - j - 1);
               result.winnerSymbol = field[startPoint[0] + j][startPoint[1] - j];
             }
           } else {
-            counter = 1
+            counter = 1;
           }
         }
       }
@@ -150,20 +147,19 @@ let findWinner = module.exports = function (field, n) {
           }
           break;
       }
-      return result
+      return result;
     }
   
     for (let i = 0; i <= field.length - 1; i++) {
       for (let j = 0; j <= field[i].length - 1; j++) {
         cellsAmount++
         if (field[i][j]) {
-          cellsFilled++
+          cellsFilled++;
         }
       }
     }
-    if (cellsAmount == cellsFilled && !result.winnerDetected) {
-      result.type = config.drawGame
+    if (cellsAmount === cellsFilled && !result.winnerDetected) {
+      result.type = config.drawGame;
     }
-  
-  return result
+  return result;
   }

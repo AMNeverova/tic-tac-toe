@@ -2,7 +2,7 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
 class Start extends React.Component {
-    constructor(){
+    constructor (){
         super();
         this.handleClick = this.handleClick.bind(this);
       }
@@ -11,7 +11,7 @@ class Start extends React.Component {
         this.props.buttonStartAC()
     }
 
-    render() {
+    render () {
         return (
             <div className='start'>
                 {this.props.state? 
@@ -22,5 +22,4 @@ class Start extends React.Component {
         )
     }
 }
-
 export default Start; 

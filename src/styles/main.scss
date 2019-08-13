@@ -12,7 +12,6 @@ html {
         }
     }
 }
-
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -34,9 +33,7 @@ html {
                 text-align: center;
             }
         }
-
     }
-
     .navbar {
         flex-basis: 100%;
         background-color: $purple-main;
@@ -55,20 +52,16 @@ html {
                 font-family: $font-family;
             }
         }
-
         .tab1 {
             flex-basis: 16%;
             max-width: 6rem;
         }
-
         .tab2 {
             flex-basis: 18%;
         }
-
         .tab.active {
             background-image: $html-background-img;
         }
-
         .lang-tab {
             display: flex;
             justify-content: flex-end;
@@ -85,7 +78,7 @@ html {
             }
         }
     }
-    .player-line{
+    .player-line {
         display: flex;
         flex-basis: 100%;
         justify-content: center;
@@ -139,7 +132,7 @@ html {
                     margin-left: calc(50% - 3rem);
                     cursor: pointer;
                 }
-        }
+            }
         }
         .select-field {
             flex-basis: 17%;
@@ -162,7 +155,6 @@ html {
                 @include warning;
             }
         }
-
         .start {
             height: 4.5rem;
             flex-basis: 15%;
@@ -182,13 +174,11 @@ html {
                 cursor: pointer;
             }
         }
-
-
-    .player.active {
-        box-shadow: $shadow-player;
+        .player.active {
+            box-shadow: $shadow-player;
+        }
     }
 
-    }
     .game {
         display: flex;
         flex-wrap: wrap;
@@ -213,32 +203,28 @@ html {
             }
         }
     }
+
     .winner {
         background-color: #d9f9fc;
     }
 }
-
 ::placeholder {
     font-family: $font-family;
 }
-
 :-ms-input-placeholder {
     font-family: $font-family;
 }
-
 .button:hover,
 .button-start:hover,
 .button-modal:hover {
     background-color: $buttons-hover;
 }
-
 .button:active,
 .button-start:active,
 .button-modal:active {
     color: $buttons-text-active;
     background-color: $buttons-active;
 }
-
 .modal-title {
     height: 2.5rem;
     text-align: center;
@@ -251,6 +237,7 @@ html {
 .modal-content {
     height: 170px;
     background-color: $background-modal;
+
     .modal-text {
         color: $purple-main;
         font-size: 1.5rem;
@@ -272,5 +259,5 @@ html {
     }
 }
 
-@import 'style970'; 
-@import 'style590'; 
+@import 'style970';
+@import 'style590';

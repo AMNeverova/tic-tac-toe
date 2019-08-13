@@ -5,22 +5,21 @@ let initialState = {
 }
 
 let langReducer = (state = initialState, action) => {
-    if (action.type === changeToEnActionType && state.lang == "ru") {
+    if (action.type === changeToEnActionType && state.lang === "ru") {
         let stateCopy = {
             ...state
         }
-        stateCopy.lang = "en"
-        return stateCopy
+        stateCopy.lang = "en";
+        return stateCopy;
     }
 
-    if (action.type === changeToRuActionType && state.lang == "en") {
+    if (action.type === changeToRuActionType && state.lang === "en") {
         let stateCopy = {
             ...state
         }
-        stateCopy.lang = "ru"
-        return stateCopy
+        stateCopy.lang = "ru";
+        return stateCopy;
     }
-    return state
+    return state;
 }
-
 export default langReducer;

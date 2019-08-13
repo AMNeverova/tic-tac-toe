@@ -11,11 +11,11 @@ import config from '../configuration/config.json';
 import SelectField from './SelectField.js';
 
 class Game extends React.Component {
-
-    closeModal() {
-        this.props.clickModalAC()
+    closeModal () {
+        this.props.clickModalAC();
     }
-    render() {
+
+    render () {
         let name;
         switch (this.props.state.winnerName) {
             case config.player1:
@@ -28,9 +28,9 @@ class Game extends React.Component {
                 name = <FormattedMessage id='drawGameMessage' />
                 break;
             default:
-                name = this.props.state.winnerName
+                name = this.props.state.winnerName;
         }
-        
+
         return (
             <div className='game'>
                 <div className='player-line'>
@@ -45,7 +45,7 @@ class Game extends React.Component {
                         <div className='modal-content'>
                             <div className='modal-text'>
                                 {name}
-                                {this.props.state.winnerName == config.drawGame? null : <FormattedMessage id='wins' />}
+                                {this.props.state.winnerName === config.drawGame? null : <FormattedMessage id='wins' />}
                             </div>
                             <button className='button-modal' onClick={() => this.closeModal()}>Ok</button>
                         </div>
@@ -58,6 +58,5 @@ class Game extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({state: state.game})
-
+const mapStateToProps = state => ({state: state.game});
 export default connect(mapStateToProps, {changeWinQuantityAC, enterNameAC, buttonStartAC, submitNameAC, cellClickAC, clickModalAC, changeFieldSizeAC})(Game);

@@ -3,30 +3,30 @@ import { FormattedMessage } from 'react-intl';
 import config from '../configuration/config.json';
 
 class SelectField extends React.Component {
-    constructor() {
+    constructor () {
         super()
         this.handleFieldSizeChange = this.handleFieldSizeChange.bind(this);
         this.handleWinCombinationChange = this.handleWinCombinationChange.bind(this);
     }
 
-    handleFieldSizeChange(e) {
+    handleFieldSizeChange (e) {
         let field = parseInt(e.target.value);
         this.props.changeFieldSizeAC(field);
     }
 
-    handleWinCombinationChange(e) {
+    handleWinCombinationChange (e) {
         let quantity = parseInt(e.target.value);
-        this.props.changeWinQuantityAC(quantity)
+        this.props.changeWinQuantityAC(quantity);
     }
 
-    render() {
+    render () {
         let options = []
         for (let i = config.minCellNumber; i <= config.maxCellNumber; i++) {
-            options.push(<option key={i} value={i}>{i}x{i}</option>)
+            options.push(<option key={i} value={i}>{i}x{i}</option>);
         }
         let quantityOptions = []
         for (let i = config.minCellQuantity; i <= config.maxCellQuantity; i++) {
-            quantityOptions.push(<option key={i} value={i}>{i}</option>)
+            quantityOptions.push(<option key={i} value={i}>{i}</option>);
         }
 
         return (
@@ -44,5 +44,4 @@ class SelectField extends React.Component {
         )
     }
 }
-
 export default SelectField;

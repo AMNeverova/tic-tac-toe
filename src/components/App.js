@@ -16,21 +16,19 @@ const translations = {
 }
 
 class App extends React.Component {
-    render() {
+    render () {
         return (
             <IntlProvider locale={this.props.state.lang} messages={translations[this.props.state.lang]}>
                 <div className='container'>
                     <Navbar state={this.props.state} changeToEnAC={this.props.changeToEnAC} changeToRuAC={this.props.changeToRuAC} />
                     <Switch>
                         <Route exact path={config.tab2address} component={ScoreTable} />
-                        <Route exact path={config.tab1address}  component={Game} />
+                        <Route exact path={config.tab1address} component={Game} />
                     </Switch>
                 </div>
             </IntlProvider>
         )
     }
 }
-
-const mapStateToProps = (state) => ({state: state.lang})
-
-export default connect(mapStateToProps,{changeToEnAC, changeToRuAC})(App);
+const mapStateToProps = (state) => ({state: state.lang});
+export default connect(mapStateToProps, {changeToEnAC, changeToRuAC})(App);

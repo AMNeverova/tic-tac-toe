@@ -1,4 +1,3 @@
-/* eslint no-useless-escape: 0 */ // --> OFF
 import {
     buttonStartActionType,
     enterNameActionType,
@@ -8,7 +7,6 @@ import {
     changeFieldSizeActionType,
     changeWinQuantityActionType
 } from "./actionTypes";
-
 import store from 'store';
 import config from '../configuration/config.json';
 import findWinner from 'tic-tac-toe-detect-winner';
@@ -37,7 +35,11 @@ const initialState = {
     "modalVisible": false,
     "field": "gamefield3",
     "winningCombination": 3,
-    "currentGamefield": [['', '', ''], ['', '', ''], ['', '', '']],
+    "currentGamefield": [
+        ['', '', ''],
+        ['', '', ''],
+        ['', '', '']
+    ],
     "fieldSize": 3,
     "showFieldSizeWarning": false
 }
@@ -46,43 +48,44 @@ let gameReducer = (state = initialState, action) => {
     if (action.type === buttonStartActionType) {
         let stateCopy = {
             ...state
-        }
+        };
         stateCopy.players = state.players.map((item) => {
             return {
                 ...item
             }
-        })
+        });
         stateCopy.players.map((item) => {
-            if (item.id == 1) {
+            if (item.id === 1) {
                 item.active = true;
                 item.classNames.splice(2, 2);
                 item.classNames.push('active');
             } else {
                 item.active = false;
-                item.classNames.splice(2, 2)
+                item.classNames.splice(2, 2);
             }
-        })
+        });
 
         stateCopy.currentGamefield = state.currentGamefield.map((item) => [...item]);
         for (let i = 0; i <= stateCopy.currentGamefield.length - 1; i++) {
             for (let j = 0; j <= stateCopy.currentGamefield.length - 1; j++) {
                 if (stateCopy.currentGamefield[i][j]) {
-                    stateCopy.currentGamefield[i][j] = ''
+                    stateCopy.currentGamefield[i][j] = '';
                 }
             }
         }
-        if (!stateCopy.winnerName && stateCopy.gameNumber != 0) {
+        if (!stateCopy.winnerName && stateCopy.gameNumber !== 0) {
             if (store.get('scoreTable')) {
                 let winnersArray = store.get('scoreTable')
                 if (winnersArray.length >= config.rowsInScoreTable) {
-                    winnersArray = winnersArray.slice(-config.rowsInScoreTable+1)
+                    winnersArray = winnersArray.slice(-config.rowsInScoreTable + 1);
                 }
                 winnersArray.push([stateCopy.gameNumber, '-']);
-                store.set('scoreTable', winnersArray)
+                store.set('scoreTable', winnersArray);
             } else {
-                store.set('scoreTable', [[stateCopy.gameNumber, '-']])
+                store.set('scoreTable', [
+                    [stateCopy.gameNumber, '-']
+                ])
             }
-
         }
         stateCopy.winner = '';
         stateCopy.pressed = true;
@@ -91,11 +94,11 @@ let gameReducer = (state = initialState, action) => {
             stateCopy.winnerName = '';
         }
 
-        if (stateCopy.clicks != 0) {
+        if (stateCopy.clicks !== 0) {
             stateCopy.clicks = 0;
         }
 
-        return stateCopy
+        return stateCopy;
     }
 
     if (action.type === enterNameActionType) {
@@ -109,11 +112,11 @@ let gameReducer = (state = initialState, action) => {
         })
 
         stateCopy.players.map((item) => {
-            if (item.id == action.id) {
-                item.value = action.newText
+            if (item.id === action.id) {
+                item.value = action.newText;
             }
         })
-        return stateCopy
+        return stateCopy;
     }
 
     if (action.type === submitNameActionType) {
@@ -127,12 +130,12 @@ let gameReducer = (state = initialState, action) => {
         })
 
         stateCopy.players.map((item) => {
-            if (item.id == action.id) {
-                item.name = action.value
-                item.value = ''
+            if (item.id === action.id) {
+                item.name = action.value;
+                item.value = '';
             }
         })
-        return stateCopy
+        return stateCopy;
     }
 
     if (action.type === cellClickActionType) {
@@ -151,40 +154,40 @@ let gameReducer = (state = initialState, action) => {
                 stateCopy.clicks += 1;
 
                 if (stateCopy.players[0].active) {
-                    stateCopy.currentGamefield[action.cell[0]][action.cell[1]] = config.cross
+                    stateCopy.currentGamefield[action.cell[0]][action.cell[1]] = config.cross;
                 } else {
-                    stateCopy.currentGamefield[action.cell[0]][action.cell[1]] = config.zero
+                    stateCopy.currentGamefield[action.cell[0]][action.cell[1]] = config.zero;
                 }
                 stateCopy.players.map((item) => {
                     if (item.active) {
                         item.active = false;
-                        item.classNames.splice(2, 2)
+                        item.classNames.splice(2, 2);
                     } else {
                         item.active = true;
                         item.classNames.push('active');
                     }
                 })
             }
-            stateCopy.winner = findWinner(stateCopy.currentGamefield, stateCopy.winningCombination)
+            stateCopy.winner = findWinner(stateCopy.currentGamefield, stateCopy.winningCombination);
 
-            if (stateCopy.winner.winnerDetected && stateCopy.winner.winnerSymbol == config.cross) {
+            if (stateCopy.winner.winnerDetected && stateCopy.winner.winnerSymbol === config.cross) {
                 if (stateCopy.players[0].name) {
                     stateCopy.winnerName = stateCopy.players[0].name;
                 } else {
-                    stateCopy.winnerName = config.player1
+                    stateCopy.winnerName = config.player1;
                 }
             }
 
-            if (stateCopy.winner.winnerDetected && stateCopy.winner.winnerSymbol == config.zero) {
+            if (stateCopy.winner.winnerDetected && stateCopy.winner.winnerSymbol === config.zero) {
                 if (stateCopy.players[1].name) {
                     stateCopy.winnerName = stateCopy.players[1].name;
                 } else {
-                    stateCopy.winnerName = config.player2
+                    stateCopy.winnerName = config.player2;
                 }
 
             }
 
-            if (stateCopy.winner.winnerDetected && stateCopy.winner.type == config.drawGame) {
+            if (stateCopy.winner.winnerDetected && stateCopy.winner.type === config.drawGame) {
                 stateCopy.winnerName = config.drawGame;
             }
 
@@ -197,17 +200,19 @@ let gameReducer = (state = initialState, action) => {
                     if (store.get('scoreTable')) {
                         let winnersArray = store.get('scoreTable')
                         if (winnersArray.length >= config.rowsInScoreTable) {
-                            winnersArray = winnersArray.slice(-config.rowsInScoreTable+1)
+                            winnersArray = winnersArray.slice(-config.rowsInScoreTable + 1);
                         }
                         winnersArray.push([stateCopy.gameNumber, stateCopy.winnerName]);
-                        store.set('scoreTable', winnersArray)
+                        store.set('scoreTable', winnersArray);
                     } else {
-                        store.set('scoreTable', [[stateCopy.gameNumber, stateCopy.winnerName]])
+                        store.set('scoreTable', [
+                            [stateCopy.gameNumber, stateCopy.winnerName]
+                        ]);
                     }
                 }
             }
         }
-        return stateCopy
+        return stateCopy;
     }
 
     if (action.type === clickModalActionType) {
@@ -215,7 +220,7 @@ let gameReducer = (state = initialState, action) => {
             ...state
         }
         stateCopy.modalVisible = false;
-        return stateCopy
+        return stateCopy;
     }
 
     if (action.type === changeFieldSizeActionType) {
@@ -228,13 +233,13 @@ let gameReducer = (state = initialState, action) => {
             }
         })
         stateCopy.players.map((item) => {
-            if (item.id == 1) {
+            if (item.id === 1) {
                 item.active = true;
                 item.classNames.splice(2, 2);
                 item.classNames.push('active');
             } else {
                 item.active = false;
-                item.classNames.splice(2, 2)
+                item.classNames.splice(2, 2);
             }
         })
         stateCopy.fieldSize = action.field;
@@ -245,21 +250,23 @@ let gameReducer = (state = initialState, action) => {
             stateCopy.currentGamefield[i] = new Array(stateCopy.fieldSize);
         }
 
-        if (!stateCopy.winnerName && stateCopy.gameNumber != 0) {
+        if (!stateCopy.winnerName && stateCopy.gameNumber !== 0) {
             if (store.get('scoreTable')) {
-                let winnersArray = store.get('scoreTable')
+                let winnersArray = store.get('scoreTable');
                 if (winnersArray.length >= config.rowsInScoreTable) {
-                    winnersArray = winnersArray.slice(-(config.rowsInScoreTable-1))
+                    winnersArray = winnersArray.slice(-(config.rowsInScoreTable - 1))
                 }
                 winnersArray.push([stateCopy.gameNumber, '-']);
-                store.set('scoreTable', winnersArray)
+                store.set('scoreTable', winnersArray);
             } else {
-                store.set('scoreTable', [[stateCopy.gameNumber, '-']])
+                store.set('scoreTable', [
+                    [stateCopy.gameNumber, '-']
+                ])
             }
 
         }
         stateCopy.clicks = 0;
-        if (stateCopy.gameNumber !=0) {
+        if (stateCopy.gameNumber !== 0) {
             stateCopy.gameNumber += 1;
         }
         stateCopy.winner = {};
@@ -270,63 +277,68 @@ let gameReducer = (state = initialState, action) => {
         } else {
             stateCopy.showFieldSizeWarning = false;
         }
-        return stateCopy
+        return stateCopy;
     }
 
     if (action.type === changeWinQuantityActionType) {
 
-        let stateCopy = {...state}
+        let stateCopy = {
+            ...state
+        }
         if (stateCopy.fieldSize >= action.quantity) {
             stateCopy.winningCombination = action.quantity;
             stateCopy.showFieldSizeWarning = false;
         } else {
             stateCopy.showFieldSizeWarning = true;
         }
-        stateCopy.winner = {...state.winner};
-        if (!stateCopy.winner.winnerDetected && state.clicks != 0) {
+        stateCopy.winner = {
+            ...state.winner
+        };
+        if (!stateCopy.winner.winnerDetected && state.clicks !== 0) {
             stateCopy.winner = findWinner(state.currentGamefield, stateCopy.winningCombination);
-            if (stateCopy.winner.winnerDetected && stateCopy.winner.winnerSymbol == config.cross) {
+            if (stateCopy.winner.winnerDetected && stateCopy.winner.winnerSymbol === config.cross) {
                 if (stateCopy.players[0].name) {
                     stateCopy.winnerName = stateCopy.players[0].name;
                 } else {
-                    stateCopy.winnerName = config.player1
+                    stateCopy.winnerName = config.player1;
                 }
             }
-    
-            if (stateCopy.winner.winnerDetected && stateCopy.winner.winnerSymbol == config.zero) {
+
+            if (stateCopy.winner.winnerDetected && stateCopy.winner.winnerSymbol === config.zero) {
                 if (stateCopy.players[1].name) {
                     stateCopy.winnerName = stateCopy.players[1].name;
                 } else {
-                    stateCopy.winnerName = config.player2
+                    stateCopy.winnerName = config.player2;
                 }
             }
-    
-            if (stateCopy.winner.winnerDetected && stateCopy.winner.type == config.drawGame) {
-                stateCopy.winnerName = config.drawGame;
+
+            if (stateCopy.winner.winnerDetected && stateCopy.winner.type === config.drawGame) {
+                    stateCopy.winnerName = config.drawGame;
             }
-    
+
             if (stateCopy.winner.winnerDetected) {
                 stateCopy.pressed = false;
                 stateCopy.modalVisible = true;
-    
+
                 if (stateCopy.winnerName) {
-    
+
                     if (store.get('scoreTable')) {
                         let winnersArray = store.get('scoreTable')
                         if (winnersArray.length >= config.rowsInScoreTable) {
-                            winnersArray = winnersArray.slice(-config.rowsInScoreTable+1)
+                            winnersArray = winnersArray.slice(-config.rowsInScoreTable + 1);
                         }
                         winnersArray.push([stateCopy.gameNumber, stateCopy.winnerName]);
-                        store.set('scoreTable', winnersArray)
+                        store.set('scoreTable', winnersArray);
                     } else {
-                        store.set('scoreTable', [[stateCopy.gameNumber, stateCopy.winnerName]])
+                        store.set('scoreTable', [
+                            [stateCopy.gameNumber, stateCopy.winnerName]
+                        ]);
                     }
                 }
             }
         }
-
         return stateCopy;
     }
-    return state
-}
+    return state;
+};
 export default gameReducer;

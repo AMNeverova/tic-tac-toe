@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 class GameCounter extends React.Component {
-    render() {
+    render () {
         return (
         <div className='game-counter'>
             {this.props.state.gameNumber !== 0?
