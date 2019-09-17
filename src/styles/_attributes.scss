@@ -60,7 +60,6 @@ $font-family: 'Comfortaa';
         .gamefield#{$i} {
             width: 40rem;
             height: 40rem;
-            min-width: 40rem;
             .cell {
                 width: (40rem/#{$i});
                 height: (40rem/#{$i});
